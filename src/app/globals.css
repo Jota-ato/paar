@@ -3,10 +3,75 @@
 @theme {
   --radius: 35px;
   --color-foreground: oklch(95% 0.02 345);
+
   --color-surface: oklch(25% 0.06 295);
   --color-surface-muted: oklch(25% 0.06 295 / 0.2);
+
   --color-background: oklch(14% 0.07 295);
+
   --color-primary: oklch(75% 0.15 295);
   --color-secondary: oklch(65% 0.15 255);
   --color-accent: oklch(78% 0.14 340);
+
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  --radius-xl: var(--radius);
+
+  --color-surface-elevated: oklch(30% 0.06 295);
+  --color-surface-hover: oklch(33% 0.06 295);
+  --color-primary-foreground: oklch(18% 0.03 295);
+  --color-secondary-foreground: oklch(18% 0.03 255);
+  --color-accent-foreground: oklch(18% 0.03 340);
+
+  --color-border: oklch(40% 0.03 295);
+  --color-input: oklch(40% 0.03 295);
+
+  --color-ring: var(--color-primary);
+
+  --color-muted: oklch(22% 0.04 295);
+  --color-muted-foreground: oklch(75% 0.02 295);
+
+  --color-success: oklch(75% 0.15 155);
+  --color-success-foreground: oklch(18% 0.02 155);
+
+  --color-warning: oklch(82% 0.14 90);
+  --color-warning-foreground: oklch(18% 0.02 90);
+
+  --color-destructive: oklch(72% 0.18 25);
+  --color-destructive-foreground: oklch(98% 0.01 25);
+
+  --color-info: oklch(75% 0.12 240);
+  --color-info-foreground: oklch(18% 0.02 240);
+
+  --color-paar-purple-dark: #47306e;
+  --color-paar-purple: #a77bef;
+  --color-paar-blue: #8b7cf6;
+  --color-paar-pink: #f59acf;
+
+  --color-paar-purple-light: #e8ddff;
+  --color-paar-blue-light: #e2e8ff;
+  --color-paar-pink-light: #ffe0f0;
+}
+
+:root {
+  --paar-gradient: linear-gradient(
+    135deg,
+    var(--color-paar-blue) 0%,
+    var(--color-paar-purple) 50%,
+    var(--color-paar-pink) 100%
+  );
+}
+
+html {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+body {
+  min-height: 100vh;
+}
+
+* {
+  border-color: var(--color-border);
 }

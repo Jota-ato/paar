@@ -1,0 +1,1 @@
+ALTER TABLE "user" ADD COLUMN "couple_id" text;
