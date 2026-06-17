@@ -1,12 +1,13 @@
 import { requireAuth } from "@/lib/auth-server";
 import { Navigation } from "@/shared/components/controls/navigation";
+import { PageTransition } from "@/shared/components/ui/page-transition";
 import { redirect } from "next/navigation";
 import { ReactNode } from "react";
 
-export default async function AppLayout({ 
-    children 
-}: { 
-    children: ReactNode 
+export default async function AppLayout({
+    children
+}: {
+    children: ReactNode
 }) {
 
     const { session } = await requireAuth()
@@ -18,7 +19,9 @@ export default async function AppLayout({
         <section
             className="h-full flex flex-col"
         >
-            {children}
+            <PageTransition>
+                {children}
+            </PageTransition>
             <Navigation />
         </section>
     );

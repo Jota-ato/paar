@@ -28,6 +28,7 @@ export default async function Home() {
           <CardHeading>¿Cómo te sientes hoy?</CardHeading>
           <Separator className="my-2" />
           <Button
+            variant="outline"
             asChild
             size="sm"
           >
