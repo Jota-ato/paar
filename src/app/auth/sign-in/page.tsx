@@ -1,19 +1,25 @@
+import { SignInForm } from "@/features/auth/components/sign-in-form";
 import { Heading } from "@/shared/components/typography/heading";
-import { Card } from "@/shared/components/ui/card";
-import { Separator } from "@/shared/components/ui/separator";
-import { GoogleAuthButton } from "@/shared/forms/google-auth-button";
+import { Button } from "@/shared/components/ui/button";
+import Link from "next/link";
 
 export default function SignUpPage() {
     return (
         <section className="min-h-screen w-full flex items-center justify-center">
             <main className="max-w-xl w-[90%] mx-auto">
-                <Heading>Sign in</Heading>
-
-                <Card className="flex flex-col items-center justify-center my-12">
-                    <Heading level={2}>The only available option is Google</Heading>
-                    <Separator className="my-6"/>
-                    <GoogleAuthButton />
-                </Card>
+                <Heading className="text-center mb-8">Iniciar sesión</Heading>
+                <SignInForm />
+                <div className="flex justify-between">
+                    <Button
+                        variant="link"
+                    >
+                        <Link
+                            href="/auth/sign-up"
+                        >
+                            Crear cuenta
+                        </Link>
+                    </Button>
+                </div>
             </main>
         </section>
     )
