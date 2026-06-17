@@ -25,7 +25,7 @@ export default async function UserPage() {
       <Container>
         <Heading>Hola {name}</Heading>
         <Separator className="my-4" />
-        <Card className="flex gap-4 py-2">
+        <Card className="flex gap-4 py-2 bg-transparent rounded-md">
           <div>
             <Image 
               width={100}
