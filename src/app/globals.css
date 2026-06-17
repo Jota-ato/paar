@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+@theme {
+  --radius: 35px;
+  --color-foreground: oklch(95% 0.02 345);
+  --color-surface: oklch(25% 0.06 295);
+  --color-surface-muted: oklch(25% 0.06 295 / 0.2);
+  --color-background: oklch(14% 0.07 295);
+  --color-primary: oklch(75% 0.15 295);
+  --color-secondary: oklch(65% 0.15 255);
+  --color-accent: oklch(78% 0.14 340);
+}
