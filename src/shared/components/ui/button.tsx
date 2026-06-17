@@ -44,16 +44,16 @@ const buttonVariants = cva(
             },
 
             size: {
-                sm: "h-8 rounded-lg px-3 text-sm",
+                sm: "h-8 rounded-sm px-3 text-sm",
 
                 default:
-                    "h-10 rounded-xl px-4",
+                    "h-10 rounded-md px-4",
 
                 lg:
-                    "h-12 rounded-xl px-6 text-base",
+                    "h-12 rounded-lg px-6 text-base",
 
                 icon:
-                    "size-10 rounded-xl",
+                    "size-10 rounded-lg",
             },
         },
 

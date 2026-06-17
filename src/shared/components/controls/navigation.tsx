@@ -29,7 +29,7 @@ export function Navigation() {
 
     return (
         <div className="bg-transparent sticky bottom-0 p-4 flex items-center justify-center">
-            <Card className="flex w-9/10 items-center justify-evenly p-2">
+            <Card className="flex w-full items-center justify-evenly p-2">
                 {NAV_ITEMS.map(({ href, icon: Icon, label, ...item }) => {
                     const active = isActive({ href, ...item, label })
                     return (
