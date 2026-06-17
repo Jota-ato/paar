@@ -2,6 +2,7 @@ import { requireAuth } from "@/lib/auth-server";
 import { Heading } from "@/shared/components/typography/heading";
 import { Button } from "@/shared/components/ui/button";
 import { Container } from "@/shared/components/ui/container";
+import { PageWPadding } from "@/shared/components/ui/page-w-padding";
 import { redirect } from "next/navigation";
 
 export default async function Home() {
@@ -14,10 +15,10 @@ export default async function Home() {
   const { user } = session
 
   return (
-    <section className="min-h-screen py-8 md:py-12">
+    <PageWPadding>
       <Container>
         <Heading>Welcome {user.name.split(' ')[0]}</Heading>
       </Container>
-    </section>
+    </PageWPadding>
   );
 }

@@ -1,4 +1,5 @@
 import { requireAuth } from "@/lib/auth-server";
+import { Navigation } from "@/shared/components/controls/navigation";
 import { redirect } from "next/navigation";
 import { ReactNode } from "react";
 
@@ -14,9 +15,11 @@ export default async function AppLayout({
     }
 
     return (
-        <div
+        <section
+            className="h-full flex flex-col"
         >
             {children}
-        </div>
+            <Navigation />
+        </section>
     );
 }
