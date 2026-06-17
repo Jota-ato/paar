@@ -16,13 +16,9 @@ export default async function Home() {
     return redirect("/auth/sign-in")
   }
 
-  const { user } = session
-
   return (
     <PageWPadding>
       <Container>
-        <Heading className="text-center">Hola {user.name.split(' ')[0]}</Heading>
-        <Separator className="my-8"/>
         <Card>
           <p className="text-xs text-muted-foreground">Estado de ánimo</p>
           <CardHeading>¿Cómo te sientes hoy?</CardHeading>
