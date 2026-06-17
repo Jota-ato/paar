@@ -1,0 +1,145 @@
+
+
+Wed Jun 17 12:16:18 2026
+Command line: TestDisk
+
+TestDisk 7.2, Data Recovery Utility, February 2024
+Christophe GRENIER <grenier@cgsecurity.org>
+https://www.cgsecurity.org
+OS: Linux, kernel 7.0.0-22-generic (#22-Ubuntu SMP PREEMPT_DYNAMIC Mon May 25 15:54:34 UTC 2026) x86_64
+Compiler: GCC 15.2
+ext2fs lib: 1.47.2, ntfs lib: libntfs-3g, reiserfs lib: none, ewf lib: none, curses lib: ncurses 6.6
+Warning: can't get size for Disk /dev/mapper/control - 0 B - 0 sectors, sector size=512
+Warning: can't get size for Disk /dev/loop18 - 0 B - 0 sectors, sector size=512
+Hard disk list
+Disk /dev/loop0 - 4096 B - 8 sectors (RO), sector size=512
+Disk /dev/loop1 - 70 MB / 66 MiB - 136904 sectors (RO), sector size=512
+Disk /dev/loop10 - 19 MB / 18 MiB - 38552 sectors (RO), sector size=512
+Disk /dev/loop11 - 19 MB / 18 MiB - 38568 sectors (RO), sector size=512
+Disk /dev/loop12 - 16 MB / 15 MiB - 32128 sectors (RO), sector size=512
+Disk /dev/loop13 - 593 KB / 580 KiB - 1160 sectors (RO), sector size=512
+Disk /dev/loop14 - 51 MB / 49 MiB - 100888 sectors (RO), sector size=512
+Disk /dev/loop15 - 183 MB / 175 MiB - 358744 sectors (RO), sector size=512
+Disk /dev/loop16 - 96 MB / 91 MiB - 187776 sectors (RO), sector size=512
+Disk /dev/loop17 - 184 MB / 175 MiB - 359392 sectors (RO), sector size=512
+Disk /dev/loop2 - 70 MB / 66 MiB - 136816 sectors (RO), sector size=512
+Disk /dev/loop3 - 20 MB / 19 MiB - 40240 sectors (RO), sector size=512
+Disk /dev/loop4 - 20 MB / 19 MiB - 40880 sectors (RO), sector size=512
+Disk /dev/loop5 - 286 MB / 273 MiB - 560536 sectors (RO), sector size=512
+Disk /dev/loop6 - 260 MB / 248 MiB - 508824 sectors (RO), sector size=512
+Disk /dev/loop7 - 17 MB / 16 MiB - 33792 sectors (RO), sector size=512
+Disk /dev/loop8 - 635 MB / 606 MiB - 1241248 sectors (RO), sector size=512
+Disk /dev/loop9 - 414 MB / 394 MiB - 808920 sectors (RO), sector size=512
+Disk /dev/nvme0n1 - 512 GB / 476 GiB - CHS 488386 64 32, sector size=512 - EG6 KIOXIA 512GB, S/N:6EDCT129Z0E2
+
+Partition table type defaults to Intel
+Media is opened in read-only.
+Disk /dev/loop0 - 4096 B (RO)
+Partition table type: Intel
+
+Interface Advanced
+
+Analyse Disk /dev/loop0 - 4096 B - 8 sectors (RO)
+Current partition structure:
+
+Partition sector doesn't have the endmark 0xAA55
+
+search_part()
+Disk /dev/loop0 - 4096 B - 8 sectors (RO)
+
+Results
+
+interface_write()
+ 
+No partition found or selected for recovery
+
+search_part()
+Disk /dev/loop0 - 4096 B - 8 sectors (RO)
+
+Results
+Can't open backup.log file: No such file or directory
+interface_load
+
+interface_write()
+ 
+No partition found or selected for recovery
+simulate write!
+
+write_mbr_i386: starting...
+Store new MBR code
+write_all_log_i386: starting...
+No extended partition
+Partition table type (auto): EFI GPT
+Disk /dev/nvme0n1 - 512 GB / 476 GiB - EG6 KIOXIA 512GB
+Partition table type: Intel
+
+Interface Advanced
+Geometry from i386 MBR: head=256 sector=63
+check_part_i386 1 type EE: no test
+ 1 P EFI GPT                  0   0  2 488386  21 16 1000215215
+
+Interface Advanced
+Geometry from i386 MBR: head=256 sector=63
+check_part_i386 1 type EE: no test
+ 1 P EFI GPT                  0   0  2 488386  21 16 1000215215
+
+Analyse Disk /dev/nvme0n1 - 512 GB / 476 GiB - CHS 488386 64 32
+Geometry from i386 MBR: head=256 sector=63
+check_part_i386 1 type EE: no test
+Current partition structure:
+ 1 P EFI GPT                  0   0  2 488386  21 16 1000215215
+
+Warning: Bad ending sector (CHS and LBA don't match)
+No partition is bootable
+
+search_part()
+Disk /dev/nvme0n1 - 512 GB / 476 GiB - CHS 488386 64 32
+FAT32 at 1/0/1
+FAT1 : 6606-7398
+FAT2 : 7399-8191
+start_rootdir : 8192 root cluster : 2
+Data : 8192-819199
+sectors : 819200
+cluster_size : 8
+no_of_cluster : 101376 (2 - 101377)
+fat_length 793 calculated 793
+heads/cylinder 255 (FAT) != 64 (HD)
+sect/track 63 (FAT) != 32 (HD)
+
+FAT32 at 1/0/1
+FAT: cluster=2(0x2), pos=10240
+     FAT32                    1   0  1   400  63 32     819200 [EFI System Partition] [ESP]
+     FAT32, blocksize=4096, 419 MB / 400 MiB
+NTFS at 488385/63/32
+heads/cylinder 255 (NTFS) != 64 (HD)
+sect/track 63 (NTFS) != 32 (HD)
+filesystem size           2881536
+sectors_per_cluster       8
+mft_lcn                   120064
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+     HPFS - NTFS          486979   0  1 488385  63 32    2881536 [DELLSUPPORT]
+     NTFS found using backup sector, blocksize=4096, 1475 MB / 1407 MiB
+NTFS at 488385/63/32
+heads/cylinder 255 (NTFS) != 64 (HD)
+sect/track 63 (NTFS) != 32 (HD)
+filesystem size           2881536
+sectors_per_cluster       8
+mft_lcn                   120064
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+NTFS: Can't read MFT
+     HPFS - NTFS          488385  63 32 489792  63 31    2881536
+     NTFS, blocksize=4096, 1475 MB / 1407 MiB
+This partition ends after the disk limits. (start=1000214527, size=2881536, end=1003096062, disk end=1000215216)
+Search for partition aborted
+Disk /dev/nvme0n1 - 512 GB / 476 GiB - CHS 488386 64 32
+Check the hard disk size: HD jumper settings, BIOS detection...
+The hard disk (512 GB / 476 GiB) seems too small! (< 513 GB / 478 GiB)
+The following partition can't be recovered:
+     HPFS - NTFS          488385  63 32 489792  63 31    2881536
+     NTFS, blocksize=4096, 1475 MB / 1407 MiB
+SIGHUP detected! PhotoRec has been killed.
+SIGHUP detected! PhotoRec has been killed.
