@@ -1,5 +1,5 @@
 
-# _Two souls, one place._
+# Paar - Two souls, one place.
 
 Paar is a private space built for two — a calm, intentional app where couples can check in with each other beyond the noise of everyday messaging.
 
