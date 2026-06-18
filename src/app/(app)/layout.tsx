@@ -19,7 +19,7 @@ export default async function AppLayout({
         <section
             className="h-full flex flex-col"
         >
-            <main className="flex-1 overflow-auto">
+            <main className="flex-1">
                 <PageTransition>
                     {children}
                 </PageTransition>
