@@ -30,34 +30,34 @@ export default async function UserPage() {
           <Heading level={2}>Cuenta</Heading>
           <Card className="rounded-md p-0">
             <Link
-              className="block px-4 py-2 text-sm border-b last-of-type:border-0 border-muted-foreground"
+              className="block px-4 py-4 text-sm border-b last-of-type:border-0 border-muted-foreground"
               href="/user"
             >
               Ver perfil
             </Link>
             <Link
-              className="block px-4 py-2 text-sm border-b last-of-type:border-0 border-muted-foreground"
-              href="/user"
+              className="block px-4 py-4 text-sm border-b last-of-type:border-0 border-muted-foreground"
+              href="/user/settings"
             >
-              Editar perfil
+              Configuración
             </Link>
           </Card>
           <Heading level={2}>Pareja</Heading>
           <Card className="rounded-md p-0">
             <Link
-              className="block px-4 py-2 text-sm border-b last-of-type:border-0 border-muted-foreground"
+              className="block px-4 py-4 text-sm border-b last-of-type:border-0 border-muted-foreground"
               href="/user"
             >
               Ver perfil de tu pareja
             </Link>
             <Link
-              className="block px-4 py-2 text-sm border-b last-of-type:border-0 border-muted-foreground"
+              className="block px-4 py-4 text-sm border-b last-of-type:border-0 border-muted-foreground"
               href="/user"
             >
               Conectar con tu pareja
             </Link>
             <Link
-              className="block px-4 py-2 text-sm border-b last-of-type:border-0 border-muted-foreground"
+              className="block px-4 py-4 text-sm border-b last-of-type:border-0 border-muted-foreground"
               href="/user"
             >
               Información de pareja
@@ -66,13 +66,13 @@ export default async function UserPage() {
           <Heading level={2}>App</Heading>
           <Card className="rounded-md p-0">
             <Link
-              className="block px-4 py-2 text-sm border-b last-of-type:border-0 border-muted-foreground"
+              className="block px-4 py-4 text-sm border-b last-of-type:border-0 border-muted-foreground"
               href="/user"
             >
               Acerca de
             </Link>
             <Link
-              className="block px-4 py-2 text-sm border-b last-of-type:border-0 border-muted-foreground"
+              className="block px-4 py-4 text-sm border-b last-of-type:border-0 border-muted-foreground"
               href="/user"
             >
               Créditos
