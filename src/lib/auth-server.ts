@@ -12,11 +12,16 @@ export async function getServerSession() {
 export async function requireAuth() { 
     const session = await getServerSession()
 
+    if (!session) return {
+        session: null,
+        isAuth: false
+    }
+
     return {
         session: {
             ...session,
-            user: session?.user as User
+            user: session.user as User
         },
-        isAuth: session ? true : false
+        isAuth: true
     }
 }

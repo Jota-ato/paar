@@ -9,7 +9,7 @@ export function UserCard({
     user: User
 }) {
     return (
-        <Card outline className="flex gap-4 py-2 rounded-md">
+        <Card outline className="flex gap-4 rounded-md">
             <div>
                 <Image
                     width={100}
@@ -21,7 +21,7 @@ export function UserCard({
             </div>
             <Separator orientation="vertical" />
             <div className="flex items-center">
-                <p className="text-xs">
+                <p className="text-sm">
                     {user.name}
                 </p>
             </div>

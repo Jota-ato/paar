@@ -1,23 +1,48 @@
-import { UserCard } from "@/features/user/components/user-card";
-import { requireAuth } from "@/lib/auth-server";
-import { Heading } from "@/shared/components/typography/heading";
-import { Card } from "@/shared/components/ui/card";
-import { Container } from "@/shared/components/ui/container";
-import { PageWPadding } from "@/shared/components/ui/page-w-padding";
-import { Separator } from "@/shared/components/ui/separator";
-import Link from "next/link";
-import { redirect } from "next/navigation";
+import { ConnectCoupleCard } from "@/features/user/components/connect-couple-card"
+import { CoupleIdDialog } from "@/features/user/components/couple-id-dialog"
+import { UserCard } from "@/features/user/components/user-card"
+import { SettingsItem, UserLinksSection } from "@/features/user/components/user-links-section"
+import { requireAuth } from "@/lib/auth-server"
+import { Heading } from "@/shared/components/typography/heading"
+import { Container } from "@/shared/components/ui/container"
+import { PageWPadding } from "@/shared/components/ui/page-w-padding"
+import { Separator } from "@/shared/components/ui/separator"
+import { redirect } from "next/navigation"
+
+const SETTINGS_SECTIONS: {
+  title: string,
+  items: SettingsItem[]
+}[] = [
+  {
+    title: "Cuenta",
+    items: [
+      { label: "Ver perfil", href: "/user" },
+      { label: "Configuración", href: "/user/settings" },
+    ],
+  },
+  {
+    title: "Pareja",
+    items: [
+      { label: "Ver perfil de tu pareja", href: "/user" },
+      { label: "Información de pareja", href: "/user" },
+    ],
+  },
+  {
+    title: "App",
+    items: [
+      { label: "Acerca de", href: "/user" },
+      { label: "Créditos", href: "/user" },
+    ],
+  },
+] as const
 
 export default async function UserPage() {
-
   const { session } = await requireAuth()
-
-  if (!session) {
-    return redirect("/auth/sign-in")
-  }
+  console.log(session)
+  if (!session) return redirect("/auth/sign-in")
 
   const { user } = session
-  const name = user.name.split(' ')[0]
+  const name = user.name.split(" ")[0]
 
   return (
     <PageWPadding>
@@ -26,60 +51,21 @@ export default async function UserPage() {
         <Separator className="my-4" />
         <UserCard user={user} />
 
-        <section className="mt-8 flex flex-col justify-center gap-4">
-          <Heading level={2}>Cuenta</Heading>
-          <Card className="rounded-md p-0">
-            <Link
-              className="block px-4 py-4 text-sm border-b last-of-type:border-0 border-muted-foreground"
-              href="/user"
-            >
-              Ver perfil
-            </Link>
-            <Link
-              className="block px-4 py-4 text-sm border-b last-of-type:border-0 border-muted-foreground"
-              href="/user/settings"
-            >
-              Configuración
-            </Link>
-          </Card>
-          <Heading level={2}>Pareja</Heading>
-          <Card className="rounded-md p-0">
-            <Link
-              className="block px-4 py-4 text-sm border-b last-of-type:border-0 border-muted-foreground"
-              href="/user"
-            >
-              Ver perfil de tu pareja
-            </Link>
-            <Link
-              className="block px-4 py-4 text-sm border-b last-of-type:border-0 border-muted-foreground"
-              href="/user"
-            >
-              Conectar con tu pareja
-            </Link>
-            <Link
-              className="block px-4 py-4 text-sm border-b last-of-type:border-0 border-muted-foreground"
-              href="/user"
-            >
-              Información de pareja
-            </Link>
-          </Card>
-          <Heading level={2}>App</Heading>
-          <Card className="rounded-md p-0">
-            <Link
-              className="block px-4 py-4 text-sm border-b last-of-type:border-0 border-muted-foreground"
-              href="/user"
-            >
-              Acerca de
-            </Link>
-            <Link
-              className="block px-4 py-4 text-sm border-b last-of-type:border-0 border-muted-foreground"
-              href="/user"
-            >
-              Créditos
-            </Link>
-          </Card>
+        <ConnectCoupleCard
+          user={user}
+        />
+
+        <section className="mt-4 flex flex-col gap-4">
+          {SETTINGS_SECTIONS.map((section) => (
+            <UserLinksSection
+              key={section.title}
+              title={section.title}
+              items={section.items}
+            />
+          ))}
         </section>
       </Container>
+      <CoupleIdDialog />
     </PageWPadding>
   )
 }

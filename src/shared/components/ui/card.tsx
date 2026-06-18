@@ -12,7 +12,7 @@ export function Card({
 }) {
     return (
         <div className={cn(
-            "rounded shadow-md py-4 px-6 border border-surface-muted",
+            "rounded-md shadow-md py-4 px-6 border border-surface-muted",
             outline ? "bg-transparent" : "bg-surface",
             className)}
         >
