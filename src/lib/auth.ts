@@ -24,6 +24,10 @@ export const auth = betterAuth({
             coupleId: {
                 type: "string",
                 required: false
+            },
+            isLinked: {
+                type: "boolean",
+                defaultValue: false
             }
         }
     },

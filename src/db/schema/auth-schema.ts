@@ -13,6 +13,7 @@ export const user = pgTable("user", {
     .$onUpdate(() => /* @__PURE__ */ new Date())
     .notNull(),
   coupleId: text("couple_id"),
+  isLinked: boolean("is_linked").default(false).notNull(),
 });
 
 export const session = pgTable(

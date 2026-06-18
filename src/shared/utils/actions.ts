@@ -1,16 +1,21 @@
 import { revalidatePath } from "next/cache"
 import { AppError } from "./error";
-import { redirect } from "next/navigation";
 
 export type ActionResponse = Promise<NonPromiseActionResponse>
 
 export type NonPromiseActionResponse = {
     success: boolean,
-    message: string
+    message: string,
+    data?: any
 }
 
+type ActionResult =
+    | { message: string; data?: unknown }
+    | string
+    | void
+
 export function adminAction<T extends any[], R>(
-    callback: (...args: T) => Promise<R>
+    callback: (...args: T) => Promise<ActionResult>
 ) {
     return async (...args: T) => {
         try {
@@ -24,8 +29,12 @@ export function adminAction<T extends any[], R>(
 
             return {
                 success: true,
-                message: typeof result === 'string' ? result : "Operation successful.",
-                data: result ? result : undefined
+                message: typeof result === 'object' && result !== null && 'message' in result
+                    ? result.message
+                    : "Operación exitosa.",
+                data: typeof result === 'object' && result !== null && 'data' in result
+                    ? result.data
+                    : result ?? undefined
             };
 
         } catch (error) {
@@ -39,7 +48,8 @@ export function adminAction<T extends any[], R>(
             console.error('[SERVER_ACTION_ERROR]:', error);
             return {
                 success: false,
-                message: "Ocurrió un error inesperado. Por favor, inténtelo de nuevo más tarde."
+                message: "Ocurrió un error inesperado. Por favor, inténtelo de nuevo más tarde.",
+                data: undefined
             };
         }
     };

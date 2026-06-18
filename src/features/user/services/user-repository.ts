@@ -6,6 +6,7 @@ import { User } from "../types/user.types";
 
 export interface IUserRepository {
     getById(id: string): Promise<User | null>
+    getByCoupleId(coupleId: string): Promise<User | null>
     generateCoupleId(userId: string): Promise<string>
     conectCoupleId(userId: string, coupleId: string): Promise<void>
 }
@@ -18,6 +19,15 @@ class UserRepository implements IUserRepository {
             .user
             .findFirst({
                 where: (user, { eq }) => eq(user.id, id)
+            }) ?? null
+    }
+
+    async getByCoupleId(coupleId: string): Promise<User | null> {
+        return await db
+            .query
+            .user
+            .findFirst({
+                where: (user, { eq }) => eq(user.coupleId, coupleId)
             }) ?? null
     }
 
@@ -36,7 +46,14 @@ class UserRepository implements IUserRepository {
         await db
             .update(user)
             .set({
-                coupleId
+                isLinked: true
+            })
+            .where(eq(user.coupleId, coupleId))
+        await db
+            .update(user)
+            .set({
+                coupleId,
+                isLinked: true
             })
             .where(eq(user.id, userId))
     }

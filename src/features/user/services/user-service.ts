@@ -11,6 +11,10 @@ class UserService {
         return await this.userRepository.getById(id)
     }
 
+    async getUserByCoupleId(coupleId: string): Promise<User | null> {
+        return await this.userRepository.getByCoupleId(coupleId)
+    }
+
     async generateCoupleId(userId: string): Promise<string> {
         const user = await this.userRepository.getById(userId)
         if (!user) {
@@ -24,6 +28,11 @@ class UserService {
         if (!user) {
             throw new AppError("Usuario no encontrado")
         }
+
+        if (user.isLinked) {
+            throw new AppError("Ya estás conectado")
+        }
+
         await this.userRepository.conectCoupleId(user.id, coupleId)
     }
 }

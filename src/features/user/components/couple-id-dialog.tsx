@@ -10,11 +10,12 @@ import { Separator } from "@/shared/components/ui/separator"
 import { useState } from "react"
 import { Copy, Link2 } from "lucide-react"
 import { User } from "../types/user.types"
+import { showResponse } from "@/shared/utils/client-actions"
 
-function CoupleCode({ 
-    code 
-}: { 
-    code: string 
+function CoupleCode({
+    code
+}: {
+    code: string
 }) {
     const [copied, setCopied] = useState(false)
 
@@ -50,7 +51,7 @@ function ConnectForm({
     const connect = async () => {
         if (!code.trim()) return
         setLoading(true)
-        await connectCoupleIdAction(user, code)
+        const {} = showResponse(await connectCoupleIdAction(user, code))
         setLoading(false)
     }
 
@@ -87,7 +88,12 @@ export function CoupleIdDialog() {
 
     const generateCoupleId = async () => {
         if (!user) return
-        await generateCoupleIdAction(user)
+        const response = await generateCoupleIdAction(user)
+        const { data } = showResponse(response)
+        setUser({
+            ...user,
+            coupleId: data
+        })
     }
 
     if (!user) return null
