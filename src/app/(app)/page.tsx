@@ -2,7 +2,7 @@ import { requireAuth } from "@/lib/auth-server";
 import { CardHeading } from "@/shared/components/typography/card-heading";
 import { Heading } from "@/shared/components/typography/heading";
 import { Button } from "@/shared/components/ui/button";
-import { Card } from "@/shared/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/card";
 import { Container } from "@/shared/components/ui/container";
 import { PageWPadding } from "@/shared/components/ui/page-w-padding";
 import { Separator } from "@/shared/components/ui/separator";
@@ -20,20 +20,25 @@ export default async function Home() {
     <PageWPadding>
       <Container>
         <Card>
-          <p className="text-xs text-muted-foreground">Estado de ánimo</p>
-          <CardHeading>¿Cómo te sientes hoy?</CardHeading>
-          <Separator className="my-2" />
-          <Button
-            variant="outline"
-            asChild
-            size="sm"
-          >
-            <Link
-              href="/daily-feelings"
+          <CardHeader>
+            <CardTitle>
+              ¿Cómo te sientes hoy?
+            </CardTitle>
+            <CardDescription>Estado de ánimo</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Button
+              variant="outline"
+              asChild
+              size="sm"
             >
-              Ir al cuestionario
-            </Link>
-          </Button>
+              <Link
+                href="/daily-feelings"
+              >
+                Ir al cuestionario
+              </Link>
+            </Button>
+          </CardContent>
         </Card>
       </Container>
     </PageWPadding>
