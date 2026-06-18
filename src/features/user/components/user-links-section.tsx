@@ -1,5 +1,5 @@
 import { Heading } from "@/shared/components/typography/heading"
-import { Card } from "@/shared/components/ui/card"
+import { Card, CardContent } from "@/shared/components/ui/card"
 import { UserLinks } from "./settings-link"
 import { Route } from "next"
 
@@ -19,11 +19,13 @@ export function UserLinksSection({
         <div className="flex flex-col gap-2">
             <Heading level={2}>{title}</Heading>
             <Card className="p-0">
-                {items.map(({ label, href }) => (
-                    <UserLinks key={`${href}-${Math.random()}`} href={href}>
-                        {label}
-                    </UserLinks>
-                ))}
+                <CardContent>
+                    {items.map(({ label, href }) => (
+                        <UserLinks key={`${href}-${Math.random()}`} href={href}>
+                            {label}
+                        </UserLinks>
+                    ))}
+                </CardContent>
             </Card>
         </div>
     )

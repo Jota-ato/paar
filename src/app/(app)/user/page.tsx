@@ -5,7 +5,7 @@ import { SettingsItem, UserLinksSection } from "@/features/user/components/user-
 import { userService } from "@/features/user/services/user-service"
 import { requireAuth } from "@/lib/auth-server"
 import { Heading } from "@/shared/components/typography/heading"
-import { Card } from "@/shared/components/ui/card"
+import { Card, CardContent } from "@/shared/components/ui/card"
 import { Container } from "@/shared/components/ui/container"
 import { PageWPadding } from "@/shared/components/ui/page-w-padding"
 import { Separator } from "@/shared/components/ui/separator"
@@ -60,18 +60,20 @@ export default async function UserPage() {
 
         {couple ? (
           <div className="my-4 flex flex-col">
-            <Card outline className="flex flex-col rounded-md divide-y divide-muted-foreground/20">
-              <div className="flex gap-4 p-4 items-center">
-                <Image width={40} height={40} src={user.image!} alt={user.name} className="w-10 h-10 rounded-full" />
-                <p className="text-sm">{user.name}</p>
-              </div>
-              <div className="flex items-center justify-center py-1">
-                <Heart className="w-3 h-3 text-muted-foreground" />
-              </div>
-              <div className="flex gap-4 p-4 items-center">
-                <Image width={40} height={40} src={couple.image!} alt={couple.name} className="w-10 h-10 rounded-full" />
-                <p className="text-sm">{couple.name}</p>
-              </div>
+            <Card className="flex rounded-md divide-y divide-muted-foreground/20">
+              <CardContent>
+                <div className="flex gap-4 p-4 items-center">
+                  <Image width={40} height={40} src={user.image!} alt={user.name} className="w-10 h-10 rounded-full" />
+                  <p className="text-sm">{user.name}</p>
+                </div>
+                <div className="flex items-center justify-center py-1">
+                  <Heart className="w-3 h-3 text-muted-foreground" />
+                </div>
+                <div className="flex gap-4 p-4 items-center">
+                  <Image width={40} height={40} src={couple.image!} alt={couple.name} className="w-10 h-10 rounded-full" />
+                  <p className="text-sm">{couple.name}</p>
+                </div>
+              </CardContent>
             </Card>
           </div>
         ) : (

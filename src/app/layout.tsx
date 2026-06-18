@@ -3,6 +3,10 @@ import "./globals.css";
 import { requireAuth } from "@/lib/auth-server";
 import { redirect } from "next/navigation";
 import { Toaster } from "sonner";
+import { Inter } from "next/font/google";
+import { cn } from "@/shared/lib/utils";
+
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   title: "Paar",
@@ -18,7 +22,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`h-screen antialiased`}
+      className={cn("h-screen", "antialiased", "font-sans", inter.variable)}
     >
       <body className="h-full flex flex-col">
         {children}

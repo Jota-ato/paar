@@ -15,7 +15,7 @@ export function UserLinks({
         <Link
             href={href}
             className={cn(
-                "block px-4 py-4 text-sm border-b last-of-type:border-0 border-muted-foreground",
+                "block p-4 text-sm border-b last-of-type:border-0 border-muted-foreground",
                 className
             )}
         >
