@@ -28,7 +28,7 @@ export default async function UserPage() {
 
         <section className="mt-8 flex flex-col justify-center gap-4">
           <Heading level={2}>Cuenta</Heading>
-          <Card outline className="rounded-md p-0">
+          <Card className="rounded-md p-0">
             <Link
               className="block px-4 py-2 text-sm border-b last-of-type:border-0 border-muted-foreground"
               href="/user"
@@ -43,7 +43,7 @@ export default async function UserPage() {
             </Link>
           </Card>
           <Heading level={2}>Pareja</Heading>
-          <Card outline className="rounded-md p-0">
+          <Card className="rounded-md p-0">
             <Link
               className="block px-4 py-2 text-sm border-b last-of-type:border-0 border-muted-foreground"
               href="/user"
@@ -64,7 +64,7 @@ export default async function UserPage() {
             </Link>
           </Card>
           <Heading level={2}>App</Heading>
-          <Card outline className="rounded-md p-0">
+          <Card className="rounded-md p-0">
             <Link
               className="block px-4 py-2 text-sm border-b last-of-type:border-0 border-muted-foreground"
               href="/user"
