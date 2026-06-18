@@ -1,10 +1,9 @@
-import { pgTable, timestamp, uuid } from "drizzle-orm/pg-core";
+import { pgTable, timestamp, text } from "drizzle-orm/pg-core";
 
 export const couples = pgTable('couples', {
-    id: uuid('id')
+    id: text('id')
         .primaryKey()
         .notNull()
-        .defaultRandom()
     ,
     createdAt: timestamp('created_at').defaultNow().notNull(),
 })
