@@ -1,15 +1,21 @@
 import { cn } from "@/shared/utils/styles"
 import { ReactNode } from "react"
 
-export function Card({ 
-    children, 
-    className 
-}: { 
+export function Card({
+    children,
+    className,
+    outline = false
+}: {
     children: ReactNode
-    className?: string 
+    className?: string
+    outline?: boolean
 }) {
     return (
-        <div className={cn("rounded shadow-md py-4 px-6 bg-surface border border-surface-muted", className)}>
+        <div className={cn(
+            "rounded shadow-md py-4 px-6 border border-surface-muted",
+            outline ? "bg-transparent" : "bg-surface",
+            className)}
+        >
             {children}
         </div>
     )

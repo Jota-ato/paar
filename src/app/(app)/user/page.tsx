@@ -1,10 +1,11 @@
+import { UserCard } from "@/features/user/components/user-card";
 import { requireAuth } from "@/lib/auth-server";
 import { Heading } from "@/shared/components/typography/heading";
 import { Card } from "@/shared/components/ui/card";
 import { Container } from "@/shared/components/ui/container";
 import { PageWPadding } from "@/shared/components/ui/page-w-padding";
 import { Separator } from "@/shared/components/ui/separator";
-import Image from "next/image";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 export default async function UserPage() {
@@ -18,30 +19,66 @@ export default async function UserPage() {
   const { user } = session
   const name = user.name.split(' ')[0]
 
-  console.log(user.image)
-
   return (
     <PageWPadding>
       <Container>
         <Heading>Hola {name}</Heading>
         <Separator className="my-4" />
-        <Card className="flex gap-4 py-2 bg-transparent rounded-md">
-          <div>
-            <Image 
-              width={100}
-              height={100}
-              src={user.image!}
-              alt={`Foto de ${name}`}
-              className="w-10 h-10 rounded-full"
-            />
-          </div>
-          <Separator orientation="vertical" />
-          <div className="flex items-center">
-            <p className="text-xs">
-              {user.name}
-            </p>
-          </div>
-        </Card>
+        <UserCard user={user} />
+
+        <section className="mt-8 flex flex-col justify-center gap-4">
+          <Heading level={2}>Cuenta</Heading>
+          <Card outline className="rounded-md p-0">
+            <Link
+              className="block px-4 py-2 text-sm border-b last-of-type:border-0 border-muted-foreground"
+              href="/user"
+            >
+              Ver perfil
+            </Link>
+            <Link
+              className="block px-4 py-2 text-sm border-b last-of-type:border-0 border-muted-foreground"
+              href="/user"
+            >
+              Editar perfil
+            </Link>
+          </Card>
+          <Heading level={2}>Pareja</Heading>
+          <Card outline className="rounded-md p-0">
+            <Link
+              className="block px-4 py-2 text-sm border-b last-of-type:border-0 border-muted-foreground"
+              href="/user"
+            >
+              Ver perfil de tu pareja
+            </Link>
+            <Link
+              className="block px-4 py-2 text-sm border-b last-of-type:border-0 border-muted-foreground"
+              href="/user"
+            >
+              Conectar con tu pareja
+            </Link>
+            <Link
+              className="block px-4 py-2 text-sm border-b last-of-type:border-0 border-muted-foreground"
+              href="/user"
+            >
+              Información de pareja
+            </Link>
+          </Card>
+          <Heading level={2}>App</Heading>
+          <Card outline className="rounded-md p-0">
+            <Link
+              className="block px-4 py-2 text-sm border-b last-of-type:border-0 border-muted-foreground"
+              href="/user"
+            >
+              Acerca de
+            </Link>
+            <Link
+              className="block px-4 py-2 text-sm border-b last-of-type:border-0 border-muted-foreground"
+              href="/user"
+            >
+              Créditos
+            </Link>
+          </Card>
+        </section>
       </Container>
     </PageWPadding>
   )

@@ -24,7 +24,7 @@ export function GoogleAuthButton({
         try {
             await authClient.signIn.social({
                 provider: "google",
-                callbackURL: "/"
+                callbackURL: mode === "signin" ? "/": "/user"
             })
         } catch {
             setIsLoading(false)

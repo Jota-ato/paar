@@ -1,5 +1,6 @@
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
+import { User } from "@/features/user/types/user.types";
 
 
 export async function getServerSession() {
@@ -12,7 +13,10 @@ export async function requireAuth() {
     const session = await getServerSession()
 
     return {
-        session,
+        session: {
+            ...session,
+            user: session?.user as User
+        },
         isAuth: session ? true : false
     }
 }
