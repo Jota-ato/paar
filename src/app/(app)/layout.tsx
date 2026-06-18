@@ -1,6 +1,5 @@
 import { requireAuth } from "@/lib/auth-server";
 import { Navigation } from "@/shared/components/controls/navigation";
-import { PageTransition } from "@/shared/components/ui/page-transition";
 import { redirect } from "next/navigation";
 import { ReactNode } from "react";
 
@@ -20,9 +19,7 @@ export default async function AppLayout({
             className="h-full flex flex-col"
         >
             <main className="flex-1">
-                <PageTransition>
-                    {children}
-                </PageTransition>
+                {children}
             </main>
             <Navigation />
         </section>
