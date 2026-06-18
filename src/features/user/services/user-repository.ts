@@ -8,7 +8,9 @@ export interface IUserRepository {
     getById(id: string): Promise<User | null>
     getByCoupleId(coupleId: string, exlucedId: string): Promise<User | null>
     generateCoupleId(userId: string): Promise<string>
+    disconnectCoupleId(coupleId: string): Promise<void>
     conectCoupleId(userId: string, coupleId: string): Promise<void>
+    updateLinkStatus(coupleId: string, isLinked: boolean): Promise<void>
 }
 
 class UserRepository implements IUserRepository {
@@ -49,16 +51,29 @@ class UserRepository implements IUserRepository {
         await db
             .update(user)
             .set({
-                isLinked: true
+                coupleId,
             })
-            .where(eq(user.coupleId, coupleId))
+            .where(eq(user.id, userId))
+        await this.updateLinkStatus(coupleId, true)
+    }
+
+    async updateLinkStatus(coupleId: string, isLinked: boolean): Promise<void> {
         await db
             .update(user)
             .set({
-                coupleId,
-                isLinked: true
+                isLinked
             })
-            .where(eq(user.id, userId))
+            .where(eq(user.coupleId, coupleId))
+    }
+
+    async disconnectCoupleId(coupleId: string): Promise<void> {
+        await this.updateLinkStatus(coupleId, false)
+        await db
+            .update(user)
+            .set({
+                coupleId: null,
+            })
+            .where(eq(user.coupleId, coupleId))
     }
 }
 
