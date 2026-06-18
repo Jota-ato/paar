@@ -11,8 +11,8 @@ class UserService {
         return await this.userRepository.getById(id)
     }
 
-    async getUserByCoupleId(coupleId: string): Promise<User | null> {
-        return await this.userRepository.getByCoupleId(coupleId)
+    async getUserByCoupleId(coupleId: string, exludeId: string): Promise<User | null> {
+        return await this.userRepository.getByCoupleId(coupleId, exludeId)
     }
 
     async generateCoupleId(userId: string): Promise<string> {

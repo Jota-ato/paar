@@ -48,7 +48,7 @@ export default async function UserPage() {
   const name = user.name.split(" ")[0]
 
   const couple = user.coupleId ?
-    await userService.getUserByCoupleId(user.coupleId)
+    await userService.getUserByCoupleId(user.coupleId, user.id)
     : null
 
   return (
