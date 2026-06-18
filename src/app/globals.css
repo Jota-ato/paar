@@ -2,16 +2,14 @@
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Tailwind v4 theme tokens
-   shadcn/ui (canary / v4) resuelve colores desde --color-* en @theme,
-   y los expone como utilidades: bg-background, text-foreground, etc.
+   shadcn/ui (v4) resuelve colores desde --color-* en @theme.
 ───────────────────────────────────────────────────────────────────────────── */
 @theme {
-  /* Radio base */
-  --radius: 35px;
+  /* Radio base para utilidades de Tailwind (rounded-md, rounded-lg, etc.) */
   --radius-sm: 12px;
   --radius-md: 18px;
   --radius-lg: 24px;
-  --radius-xl: var(--radius);
+  --radius-xl: 35px;
 
   /* ── Colores semánticos que shadcn espera ── */
   --color-background: oklch(14% 0.07 295);
@@ -41,7 +39,6 @@
   --color-border: oklch(40% 0.03 295);
   --color-input: oklch(40% 0.03 295);
   --color-ring: oklch(75% 0.15 295);
-  /* = primary */
 
   /* ── Colores de estado extra ── */
   --color-success: oklch(75% 0.15 155);
@@ -53,7 +50,7 @@
   --color-info: oklch(75% 0.12 240);
   --color-info-foreground: oklch(18% 0.02 240);
 
-  /* ── Colores de surface propios (no shadcn, pero útiles) ── */
+  /* ── Colores de surface propios ── */
   --color-surface: oklch(25% 0.06 295);
   --color-surface-muted: oklch(25% 0.06 295 / 0.2);
   --color-surface-elevated: oklch(30% 0.06 295);
@@ -81,11 +78,11 @@
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Variables CSS nativas en :root
-   shadcn las referencia directamente en algunos componentes internos.
-   Deben coincidir con los valores de @theme arriba.
+   Requeridas porshadcn para cálculos internos de sub-radios.
 ───────────────────────────────────────────────────────────────────────────── */
 :root {
-  --radius: 35px;
+  /* Coincide con tu --radius-xl para mantener consistencia */
+  --radius: 35px; 
 
   /* Gradiente de marca */
   --paar-gradient: linear-gradient(135deg,
@@ -106,6 +103,7 @@ body {
   min-height: 100vh;
 }
 
-* {
-  border-color: var(--color-border);
+button:not(:disabled),
+[role="button"]:not(:disabled) {
+  cursor: pointer;
 }
