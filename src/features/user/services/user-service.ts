@@ -1,6 +1,7 @@
 import { AppError } from "@/shared/utils/error";
 import { User } from "../types/user.types";
 import { IUserRepository, userRepository } from "./user-repository";
+import { couplesService } from "@/features/couples/services/couples-service";
 
 class UserService {
     constructor(
@@ -32,6 +33,8 @@ class UserService {
         if (user.isLinked) {
             throw new AppError("Ya estás conectado")
         }
+
+        await couplesService.syncCouples(coupleId)
 
         await this.userRepository.conectCoupleId(user.id, coupleId)
     }
