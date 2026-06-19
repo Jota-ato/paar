@@ -6,6 +6,7 @@ import { Button } from "@/shared/components/ui/button";
 import { Container } from "@/shared/components/ui/container";
 import { PageWPadding } from "@/shared/components/ui/page-w-padding";
 import { Separator } from "@/shared/components/ui/separator";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 export default async function SettingsPage() {
@@ -46,7 +47,11 @@ export default async function SettingsPage() {
                                 variant="outline"
                                 size="sm"
                             >
-                                Editar datos de perfil
+                                <Link
+                                    href="/user/settings/edit"
+                                >
+                                    Editar datos de perfil
+                                </Link>
                             </Button>
                         </div>
                     </div>
