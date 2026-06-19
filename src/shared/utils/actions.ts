@@ -14,7 +14,7 @@ type ActionResult =
     | string
     | void
 
-export function adminAction<T extends any[], R>(
+export function authAction<T extends any[], R>(
     callback: (...args: T) => Promise<ActionResult>
 ) {
     return async (...args: T) => {

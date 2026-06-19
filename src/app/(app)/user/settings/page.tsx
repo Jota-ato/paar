@@ -2,6 +2,7 @@ import { AccountControls } from "@/features/user/components/account-controls";
 import { UserCard } from "@/features/user/components/user-card";
 import { requireAuth } from "@/lib/auth-server";
 import { Heading } from "@/shared/components/typography/heading";
+import { BackLink } from "@/shared/components/ui/back-link";
 import { Button } from "@/shared/components/ui/button";
 import { Container } from "@/shared/components/ui/container";
 import { PageWPadding } from "@/shared/components/ui/page-w-padding";
@@ -22,14 +23,15 @@ export default async function SettingsPage() {
         <PageWPadding>
             <Container className="space-y-8">
                 <div className="space-y-1">
-                    <Heading level={1} className="text-3xl font-extrabold tracking-tight">
+                    <Heading className="font-extrabold tracking-tight flex items-center">
+                        <BackLink href="/user" />
                         Configuración de cuenta
                     </Heading>
                     <p className="text-sm text-muted-foreground">
                         Administra la información de tu perfil, tus credenciales de acceso y tus opciones de seguridad.
                     </p>
                 </div>
-                <Separator />
+                <Separator  />
 
                 <section className="grid gap-4 md:grid-cols-3">
                     <div className="space-y-1">

@@ -3,6 +3,7 @@ import { user } from "@/db/schema"
 import { eq } from "drizzle-orm";
 import { v4 as uuid } from "uuid";
 import { User } from "../types/user.types";
+import { UserInput } from "../schemas/user-schemas";
 
 export interface IUserRepository {
     getById(id: string): Promise<User | null>
@@ -11,6 +12,7 @@ export interface IUserRepository {
     disconnectCoupleId(coupleId: string): Promise<void>
     conectCoupleId(userId: string, coupleId: string): Promise<void>
     updateLinkStatus(coupleId: string, isLinked: boolean): Promise<void>
+    updateUser(userId: string, input: UserInput): Promise<void>
 }
 
 class UserRepository implements IUserRepository {
@@ -74,6 +76,13 @@ class UserRepository implements IUserRepository {
                 coupleId: null,
             })
             .where(eq(user.coupleId, coupleId))
+    }
+
+    async updateUser(userId: string, input: UserInput): Promise<void> {
+        await db
+            .update(user)
+            .set(input)
+            .where(eq(user.id, userId))
     }
 }
 

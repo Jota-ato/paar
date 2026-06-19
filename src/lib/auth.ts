@@ -28,6 +28,10 @@ export const auth = betterAuth({
             isLinked: {
                 type: "boolean",
                 defaultValue: false
+            },
+            description: {
+                type: "string",
+                required: false
             }
         }
     },
