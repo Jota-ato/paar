@@ -27,8 +27,17 @@ export default async function RootLayout({
       <body className="h-full flex flex-col">
         {children}
         <Toaster 
+          theme="dark"
+          closeButton
           position="top-right"
-          richColors
+          toastOptions={{
+            classNames: {
+              success: 'bg-success! text-success-foreground!',
+              warning: 'bg-warning! text-warning-foreground!',
+              error: 'bg-destructive! text-destructive-foreground!',
+              info: 'bg-info! text-info-foreground!',
+            }
+          }}
         />
 
       </body>
