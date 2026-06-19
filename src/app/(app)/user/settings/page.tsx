@@ -9,7 +9,6 @@ import { Separator } from "@/shared/components/ui/separator";
 import { redirect } from "next/navigation";
 
 export default async function SettingsPage() {
-    // 1. Verificación de Autenticación en Servidor
     const { session } = await requireAuth()
 
     if (!session) {
@@ -21,7 +20,6 @@ export default async function SettingsPage() {
     return (
         <PageWPadding>
             <Container className="space-y-8">
-                {/* Cabecera Principal */}
                 <div className="space-y-1">
                     <Heading level={1} className="text-3xl font-extrabold tracking-tight">
                         Configuración de cuenta
@@ -32,7 +30,6 @@ export default async function SettingsPage() {
                 </div>
                 <Separator />
 
-                {/* Sección 1: Información de Perfil */}
                 <section className="grid gap-4 md:grid-cols-3">
                     <div className="space-y-1">
                         <Heading level={2} className="text-lg font-bold tracking-tight">
