@@ -60,18 +60,18 @@ export default async function UserPage() {
 
         {couple ? (
           <div className="my-4 flex flex-col">
-            <Card className="flex rounded-md divide-y divide-muted-foreground/20">
-              <CardContent>
-                <div className="flex gap-4 p-4 items-center">
-                  <Image width={40} height={40} src={user.image!} alt={user.name} className="w-10 h-10 rounded-full" />
-                  <p className="text-sm">{user.name}</p>
+            <Card className="bg-linear-to-r from-paar-blue via-paar-pink to-paar-purple">
+              <CardContent className="grid grid-cols-9 gap-4">
+                <div className="col-span-4 flex flex-col gap-4 p-4 items-center">
+                  <Image width={100} height={100} src={couple.image!} alt={user.name} className="w-16 h-16 rounded-full" />
+                  <p className="text-xs text-center">{couple.name}</p>
                 </div>
                 <div className="flex items-center justify-center py-1">
-                  <Heart className="w-3 h-3 text-muted-foreground" />
+                  <Heart className="w-4 h-" />
                 </div>
-                <div className="flex gap-4 p-4 items-center">
-                  <Image width={40} height={40} src={couple.image!} alt={couple.name} className="w-10 h-10 rounded-full" />
-                  <p className="text-sm">{couple.name}</p>
+                <div className="col-span-4 flex flex-col gap-4 p-4 items-center">
+                  <Image width={100} height={100} src={user.image!} alt={couple.name} className="w-16 h-16 rounded-full" />
+                  <p className="text-xs text-center">{user.name}</p>
                 </div>
               </CardContent>
             </Card>
