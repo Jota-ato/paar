@@ -52,6 +52,19 @@ class UserService {
 
         await this.userRepository.updateUser(dataBaseUser.id, input)
     }
+
+    async deleteUser(user: User, token: string) {
+        const dataBaseUser = await this.userRepository.getById(user.id)
+        if (!dataBaseUser) {
+            throw new AppError("Usuario no encontrado")
+        }
+
+        if (dataBaseUser.id !== user.id) {
+            throw new AppError("No tienes permisos para editar este usuario")
+        }
+
+        await this.userRepository.deleteUser(token)
+    }
 }
 
 export const userService = new UserService(userRepository)

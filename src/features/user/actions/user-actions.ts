@@ -5,6 +5,7 @@ import { userService } from "../services/user-service"
 import { User } from "../types/user.types"
 import { UserInput, userSchema } from "../schemas/user-schemas"
 import { AppError } from "@/shared/utils/error"
+import { Session } from "@/lib/auth-server"
 
 export const generateCoupleIdAction = authAction(async (user: User) : Promise<Omit<NonPromiseActionResponse, 'success'>> => {
     const coupleId =  await userService.generateCoupleId(user.id)

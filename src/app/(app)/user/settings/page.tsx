@@ -71,7 +71,8 @@ export default async function SettingsPage() {
                         </p>
                     </div>
                     <div className="md:col-span-2">
-                        <AccountControls />
+                        <AccountControls
+                        />
                     </div>
                 </section>
 

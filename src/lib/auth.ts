@@ -33,6 +33,9 @@ export const auth = betterAuth({
                 type: "string",
                 required: false
             }
+        },
+        deleteUser: {
+            enabled: true
         }
     },
     plugins: [nextCookies()]

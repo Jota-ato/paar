@@ -4,6 +4,8 @@ import { eq } from "drizzle-orm";
 import { v4 as uuid } from "uuid";
 import { User } from "../types/user.types";
 import { UserInput } from "../schemas/user-schemas";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 export interface IUserRepository {
     getById(id: string): Promise<User | null>
@@ -13,6 +15,7 @@ export interface IUserRepository {
     conectCoupleId(userId: string, coupleId: string): Promise<void>
     updateLinkStatus(coupleId: string, isLinked: boolean): Promise<void>
     updateUser(userId: string, input: UserInput): Promise<void>
+    deleteUser(token: string): Promise<void>
 }
 
 class UserRepository implements IUserRepository {
@@ -83,6 +86,16 @@ class UserRepository implements IUserRepository {
             .update(user)
             .set(input)
             .where(eq(user.id, userId))
+    }
+
+    async deleteUser(token: string): Promise<void> {
+        await auth.api.deleteUser({
+            body: {
+                token,
+                callbackURL: "/"
+            },
+            headers: await headers()
+        })
     }
 }
 

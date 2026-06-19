@@ -1,17 +1,35 @@
 "use client"
-import { signOut } from "@/lib/auth-client";
+import { authClient, signOut } from "@/lib/auth-client";
 import { AlertDialogCustom } from "@/shared/components/ui/alert-dialog-custom";
 import { Separator } from "@/shared/components/ui/separator";
 import { LogOut, TriangleAlert } from "lucide-react";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export function AccountControls() {
 
+  const router = useRouter()
+
   const logOut = async () => {
     await signOut()
+    toast.success('Sesión cerrada exitosamente')
     redirect("/")
   }
 
+  const deleteAccount = async () => {
+
+    try {
+      await authClient.deleteUser({
+        callbackURL: "/"
+      })
+
+      toast.success('Cuenta borrada exitosamente')
+      router.push("/")
+
+    } catch (error) {
+      toast.error('Hubo un error al borrar la cuenta')
+    }
+  }
   return (
     <div className="flex flex-col gap-4">
       <AlertDialogCustom
@@ -30,7 +48,7 @@ export function AccountControls() {
         dialogTitle="¿Estás seguro de que quieres borrar tu cuenta?"
         actionLabel="Borrar"
         triggerIcon={TriangleAlert}
-        action={() => console.log('Borrando...')}
+        action={deleteAccount}
       />
     </div>
   )

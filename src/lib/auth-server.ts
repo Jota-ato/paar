@@ -2,6 +2,7 @@ import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { User } from "@/features/user/types/user.types";
 
+export type Session = Awaited<ReturnType<typeof getServerSession>>
 
 export async function getServerSession() {
     return await auth.api.getSession({

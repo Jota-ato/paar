@@ -2,7 +2,7 @@
 
 import { cn } from "@/shared/utils/styles"
 import { useUserStore } from "../stores/user-store"
-import { Card } from "@/shared/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/card"
 import { Container } from "@/shared/components/ui/container"
 import { Button } from "@/shared/components/ui/button"
 import { connectCoupleIdAction, generateCoupleIdAction } from "../actions/user-actions"
@@ -51,14 +51,14 @@ function ConnectForm({
     const connect = async () => {
         if (!code.trim()) return
         setLoading(true)
-        const {} = showResponse(await connectCoupleIdAction(user, code))
+        const { } = showResponse(await connectCoupleIdAction(user, code))
         setLoading(false)
     }
 
     return (
         <div className="flex flex-col gap-2">
             <p className="text-xs text-muted-foreground">Código de tu pareja</p>
-            <div className="flex gap-2">
+            <div className="flex items-center gap-2">
                 <input
                     value={code}
                     onChange={(e) => setCode(e.target.value)}
@@ -113,22 +113,24 @@ export function CoupleIdDialog() {
                     <Card
                         className="z-30 flex flex-col gap-6"
                     >
-                        <div>
-                            <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Pareja</p>
-                            <h2 className="text-lg font-semibold">Conecta con tu pareja</h2>
-                        </div>
+                        <CardHeader>
+                            <CardDescription><p className="text-xs text-muted-foreground uppercase tracking-wider">Pareja</p></CardDescription>
+                            <CardTitle>Conecta con tu pareja</CardTitle>
+                        </CardHeader>
+                        <CardContent>
 
-                        {user.coupleId ? (
-                            <CoupleCode code={user.coupleId} />
-                        ) : (
-                            <Button className="w-full" onClick={generateCoupleId} variant="outline">
-                                Generar mi código
-                            </Button>
-                        )}
+                            {user.coupleId ? (
+                                <CoupleCode code={user.coupleId} />
+                            ) : (
+                                <Button className="w-full" onClick={generateCoupleId} variant="outline">
+                                    Generar mi código
+                                </Button>
+                            )}
 
-                        <Separator />
+                            <Separator className="my-4" />
 
-                        <ConnectForm user={user} />
+                            <ConnectForm user={user} />
+                        </CardContent>
                     </Card>
                 </div>
             </Container>
