@@ -35,7 +35,7 @@ const SETTINGS_SECTIONS: {
     title: "App",
     items: [
       { label: "Acerca de", href: "/user" },
-      { label: "Créditos", href: "/user" },
+      { label: "Créditos", href: "/credits" },
     ],
   },
 ] as const
