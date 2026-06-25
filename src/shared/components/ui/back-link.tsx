@@ -13,8 +13,12 @@ export function BackLink({
   return (
     <Link
         href={href}
+        className={cn(
+            "mr-2 h-5 w-5 flex items-center justify-center",
+            className
+        )}
     >
-        <ChevronLeft className={cn("mr-2 h-5 w-5", className)} />
+        <ChevronLeft />
     </Link>
   )
 }
