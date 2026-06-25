@@ -29,6 +29,7 @@ export default async function RootLayout({
         <Toaster 
           theme="dark"
           closeButton
+          richColors
           position="top-right"
           toastOptions={{
             classNames: {
