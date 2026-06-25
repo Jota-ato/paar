@@ -19,7 +19,7 @@ export function MemoryCard({
                     width={1280}
                     height={720}
                     alt="Memory image"
-                    className="relative z-20 aspect-video w-full h-60 object-cover"
+                    className="relative aspect-video w-full h-60 object-cover"
                 />
             </Link>
             <CardHeader>
