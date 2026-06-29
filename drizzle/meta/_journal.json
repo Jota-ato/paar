@@ -64,6 +64,20 @@
       "when": 1781885499787,
       "tag": "0008_young_skreet",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1782701231216,
+      "tag": "0009_glorious_masque",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1782701772360,
+      "tag": "0010_bright_luminals",
+      "breakpoints": true
     }
   ]
 }
