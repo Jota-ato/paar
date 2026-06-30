@@ -9,7 +9,6 @@ export const couples = pgTable('couples', {
         .primaryKey()
         .notNull()
     ,
-    userId: text('user_id').notNull().references(() => user.id, { onDelete: 'cascade' }),
     createdAt: timestamp('created_at').defaultNow().notNull(),
 })
 

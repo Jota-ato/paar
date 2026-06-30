@@ -11,7 +11,7 @@ class CouplesRepository implements ICouplesRepository {
         await db
             .insert(couples)
             .values({
-                id: coupleId
+                id: coupleId,
             })
     }
 

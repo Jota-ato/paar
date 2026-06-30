@@ -3,27 +3,26 @@ import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/shar
 import Image from "next/image";
 import Link from "next/link";
 import { format } from "date-fns";
+import { Memory } from "@/db/schema";
 
 export function MemoryCard({
-    image,
-    date
+    memory: { image, date, id, title}
 }: {
-    image?: string
-    date?: string
+    memory: Memory
 }) {
     return (
         <Card className="pt-0">
-            <Link href="/memories/1/memory">
+            <Link href={`/memories/${id}/memory`}>
                 <Image
                     src={image!}
                     width={1280}
                     height={720}
-                    alt="Memory image"
+                    alt={`Memory of ${title}`}
                     className="relative aspect-video w-full h-60 object-cover"
                 />
             </Link>
             <CardHeader>
-                <CardTitle>Un momento muy bello</CardTitle>
+                <CardTitle>{title}</CardTitle>
                 <CardDescription>
                     {format(date ? new Date(date) : new Date(), "dd/MM/yyyy")}
                 </CardDescription>
@@ -34,7 +33,7 @@ export function MemoryCard({
                     variant="link"
                 >
                     <Link
-                        href="/memories/1/memory"
+                        href={`/memories/${id}/memory`}
                     >
                         Revivir el momento
                     </Link>

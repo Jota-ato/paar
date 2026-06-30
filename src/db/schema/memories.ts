@@ -12,6 +12,8 @@ export const memories = pgTable("memories", {
         withTimezone: true,
         mode: "date"
     }).notNull(),
+    title: varchar("title", { length: 100 })
+        .notNull(),
     description: text("description")
         .notNull(),
     createdBy: text("created_by")
@@ -39,3 +41,6 @@ export const memoriesRelations = relations(memories, ({ one }) => ({
         references: [user.id]
     })
 }))
+
+export type Memory = typeof memories.$inferSelect;
+export type NewMemory = typeof memories.$inferInsert;
