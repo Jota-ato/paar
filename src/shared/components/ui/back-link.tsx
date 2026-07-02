@@ -14,7 +14,7 @@ export function BackLink({
     <Link
         href={href}
         className={cn(
-            "mr-2 h-5 w-5 flex items-center justify-center",
+            "mr-2 h-5 w-5 hover:text-accent transition-all duration-200 flex items-center justify-center",
             className
         )}
     >

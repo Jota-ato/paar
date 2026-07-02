@@ -7,7 +7,7 @@ const f = createUploadthing();
 export const ourFileRouter = {
     meetiUploader: f({
         image: {
-            maxFileSize: "1MB",
+            maxFileSize: "16MB",
             maxFileCount: 1,
         }
     })

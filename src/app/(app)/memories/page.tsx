@@ -3,6 +3,7 @@ import { memoriesService } from "@/features/memories/services/memories-service";
 import { requireAuth } from "@/lib/auth-server";
 import { Heading } from "@/shared/components/typography/heading";
 import { Button } from "@/shared/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/card";
 import { Container } from "@/shared/components/ui/container";
 import { PageWPadding } from "@/shared/components/ui/page-w-padding";
 import Link from "next/link";
@@ -50,19 +51,25 @@ export default async function MemoriesPage() {
             ))}
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center p-12 text-center border-2 border-dashed rounded-2xl border-muted bg-card/50 min-h-75 space-y-2">
-            <p className="text-lg font-medium text-foreground">No tienes recuerdos aún</p>
-            <p className="text-sm text-muted-foreground max-w-xs">
-              ¡El historial está en blanco! Comienza a añadir tus fotos y momentos favoritos.
-            </p>
-            <Button
-              variant={"outline"}
-            >
-              <Link href="/memories/create">
-                Crear Recuerdo
-              </Link>
-            </Button>
-          </div>
+          <Card>
+            <CardHeader>
+              <CardTitle>
+                <Heading level={2} className="text-lg font-medium text-foreground">No tienes recuerdos aún</Heading>
+              </CardTitle>
+              <CardDescription>
+                ¡El historial está en blanco! Comienza a añadir tus fotos y momentos favoritos.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button
+                variant={"outline"}
+              >
+                <Link href="/memories/create">
+                  Crear Recuerdo
+                </Link> 
+              </Button>
+            </CardContent>
+          </Card>
         )}
       </Container>
     </PageWPadding>
