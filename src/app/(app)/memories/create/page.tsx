@@ -20,11 +20,10 @@ export default function CreateMemoryPage() {
                 </nav>
                 <section>
                     <Input
-                        className="w-full bg-transparent! rounded-none border-0 border-b text-xl p-0 pb-1 focus:outline-none "
+                        className="w-full bg-transparent! rounded-none border-0 text-xl p-0 pb-1 focus:outline-none "
                         placeholder="Nueva memoria"
                     />
-                    <div className="my-4 space-y-4">
-                        <p>Imagen del recuerdo</p>
+                    <div className="mt-6 mb-8 space-y-4">
                         <ImageUploader
                             onChange={(url) => console.log(url)}
                         />

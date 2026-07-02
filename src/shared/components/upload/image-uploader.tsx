@@ -20,15 +20,13 @@ export function ImageUploader({
         <div className="space-y-2">
 
             {imageUrl ? (
-                // Preview de la imagen subida
                 <div className="relative group rounded-xl overflow-hidden border border-border h-60 w-full">
                     <Image
                         src={imageUrl}
                         fill
-                        alt="Portada de la comunidad"
+                        alt="Imagen subida"
                         className="w-full h-full object-cover"
                     />
-                    {/* Overlay con opción de cambiar */}
                     <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
                         <button
                             type="button"
@@ -42,7 +40,6 @@ export function ImageUploader({
                             Cambiar imagen
                         </button>
                     </div>
-                    {/* Badge de éxito */}
                     <div className="absolute top-2 right-2 flex items-center gap-1 bg-green-500 text-white text-xs font-medium px-2 py-1 rounded-full">
                         <CheckCircle2 className="size-3" />
                         Subida
@@ -53,8 +50,8 @@ export function ImageUploader({
                     endpoint="meetiUploader"
                     config={{ mode: "auto" }}
                     content={{
-                        label: isUploading ? "Subiendo imagen..." : "Arrastra una imagen aquí",
-                        allowedContent: "PNG, JPG o WEBP · Máx. 16MB",
+                        label: isUploading ? "Subiendo imagen..." : "Imagen para tu recuerdo",
+                        allowedContent: " ",
                         button({ ready, isUploading }) {
                             if (isUploading) return "Subiendo..."
                             if (ready) return "Subir archivo"
