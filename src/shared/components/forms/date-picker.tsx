@@ -22,7 +22,7 @@ export function DatePicker() {
         <Button
           variant="ghost"
           data-empty={!date}
-          className="w-70 justify-start text-left font-normal data-[empty=true]:text-muted-foreground"
+          className="w-full justify-start text-left font-normal p-0 data-[empty=true]:text-muted-foreground bg-transparent"
         >
           <CalendarIcon />
           {date ? format(date, "PPP") : <span>Fecha</span>}

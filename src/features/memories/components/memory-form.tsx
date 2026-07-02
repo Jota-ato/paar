@@ -8,7 +8,7 @@ import { DatePicker } from "@/shared/components/forms/date-picker";
 export function MemoryForm() {
     return (
         <form>
-            <FieldSet>
+            <FieldSet className="p-0">
                 <Input
                     className="w-full bg-transparent! rounded-none border-0 text-xl p-0 pb-1 focus:outline-none "
                     placeholder="Nueva memoria"
