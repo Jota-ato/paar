@@ -25,7 +25,7 @@ export function DatePicker() {
           className="w-70 justify-start text-left font-normal data-[empty=true]:text-muted-foreground"
         >
           <CalendarIcon />
-          {date ? format(date, "PPP") : <span>Pick a date</span>}
+          {date ? format(date, "PPP") : <span>Fecha</span>}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-full p-0">

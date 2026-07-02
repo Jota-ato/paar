@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/shared/utils/styles";
 import { ElementType } from "react";
 import { Route } from "next";
+import { Container } from "../ui/container";
 
 type NavItem = {
     href: Route;
@@ -28,7 +29,7 @@ export function Navigation() {
         item.exact ? pathname === item.href : pathname.startsWith(item.href)
 
     return (
-        <div className="bg-transparent sticky bottom-0 p-4 flex items-center justify-center">
+        <Container className="bg-transparent sticky bottom-0 py-4 flex items-center justify-center">
             <Card className="flex flex-row bg-surface/80 w-full items-center justify-evenly p-2">
                 {NAV_ITEMS.map(({ href, icon: Icon, label, ...item }) => {
                     const active = isActive({ href, ...item, label })
@@ -50,6 +51,6 @@ export function Navigation() {
                     )
                 })}
             </Card>
-        </div>
+        </Container>
     )
 }
