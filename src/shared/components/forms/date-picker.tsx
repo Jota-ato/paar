@@ -1,10 +1,8 @@
 "use client"
 
-import * as React from "react"
 import { format } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
 
-import { cn } from "@/shared/lib/utils"
 import { Button } from "@/shared/components/ui/button"
 import { Calendar } from "@/shared/components/ui/calendar"
 import {
@@ -12,9 +10,15 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/shared/components/ui/popover"
+import { useState } from "react"
 
-export function DatePicker() {
-  const [date, setDate] = React.useState<Date>()
+export function DatePicker({
+  date,
+  setDate,
+}: {
+  date?: Date
+  setDate?: (date: Date | undefined) => void
+}) {
 
   return (
     <Popover>
