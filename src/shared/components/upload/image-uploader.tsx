@@ -1,10 +1,11 @@
 "use client"
 
-import { UploadDropzone } from "@/shared/utils/uploadthing"
+import { UploadDropzone, uploadFiles } from "@/shared/utils/uploadthing"
 import { useState } from "react"
 import { toast } from "sonner"
-import { ImageIcon, X, CheckCircle2 } from "lucide-react"
+import { ImageIcon, X, CheckCircle2, Loader2 } from "lucide-react"
 import Image from "next/image";
+import { compressImage } from "@/shared/lib/image-compresor"
 
 export function ImageUploader({
     onChange,
@@ -15,6 +16,48 @@ export function ImageUploader({
 }) {
     const [imageUrl, setImageUrl] = useState<string | null>(image ?? '')
     const [isUploading, setIsUploading] = useState(false)
+    const [isCompressing, setIsCompressing] = useState(false)
+
+    const handleChange = async (files: File[]) => {
+        if (!files || files.length === 0) return
+
+        try {
+            setIsCompressing(true)
+            const compressedFiles = await Promise.all(
+                files.map(async (file) => {
+                    return await compressImage(file, {
+                        maxSizeMB: 0.8,
+                        maxWidthOrHeight: 1440,
+                    })
+                })
+            )
+            setIsCompressing(false)
+
+            setIsUploading(true)
+            toast.info("Iniciando subida al storage...")
+
+            const res = await uploadFiles("paarUploader", {
+                files: compressedFiles,
+            })
+
+            setIsUploading(false)
+
+            const fileUrl = res?.[0]?.ufsUrl
+            if (fileUrl) {
+                setImageUrl(fileUrl)
+                onChange(fileUrl)
+                toast.success("Imagen optimizada y subida correctamente")
+            }
+        } catch (error: any) {
+            setIsCompressing(false)
+            setIsUploading(false)
+            const errorMessage = error?.message ?? "Error desconocido en el proceso"
+            toast.error(`Error en el proceso: ${errorMessage}`)
+            console.error("Upload error under the hood:", error)
+        }
+    }
+
+    const isLoadingState = isUploading || isCompressing
 
     return (
         <div className="space-y-2">
@@ -47,17 +90,25 @@ export function ImageUploader({
                 </div>
             ) : (
                 <UploadDropzone
-                    endpoint="meetiUploader"
-                    config={{ mode: "auto" }}
+                    endpoint="paarUploader"
+                    onChange={handleChange}
                     content={{
-                        label: isUploading ? "Subiendo imagen..." : "Imagen para tu recuerdo",
-                        allowedContent: " ",
-                        button({ ready, isUploading }) {
+                        label: isCompressing
+                            ? "Optimizando peso de la imagen..."
+                            : isUploading
+                                ? "Subiendo imagen..."
+                                : "Arrastra una imagen aquí",
+                        allowedContent: "PNG, JPG o WEBP",
+                        button() {
+                            if (isCompressing) return "Procesando..."
                             if (isUploading) return "Subiendo..."
-                            if (ready) return "Subir archivo"
                             return "Seleccionar archivo"
                         },
-                        uploadIcon: () => <ImageIcon className="size-8 text-muted-foreground" />
+                        uploadIcon: () => isLoadingState ? (
+                            <Loader2 className="size-8 text-primary animate-spin" />
+                        ) : (
+                            <ImageIcon className="size-8 text-muted-foreground" />
+                        )
                     }}
                     appearance={{
                         container: `

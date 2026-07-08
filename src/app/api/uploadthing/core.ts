@@ -5,7 +5,7 @@ import { UploadThingError } from "uploadthing/server";
 const f = createUploadthing();
 
 export const ourFileRouter = {
-    meetiUploader: f({
+    paarUploader: f({
         image: {
             maxFileSize: "16MB",
             maxFileCount: 1,

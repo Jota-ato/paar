@@ -11,7 +11,7 @@ export function MemoryForm() {
             <FieldSet className="p-0">
                 <Input
                     className="w-full bg-transparent! rounded-none border-0 text-xl p-0 pb-1 focus:outline-none "
-                    placeholder="Nueva memoria"
+                    placeholder="Nuevo recuerdo"
                 />
                 <DatePicker />
                 <ImageUploader
@@ -19,7 +19,7 @@ export function MemoryForm() {
                 />
                 <textarea
                     className="w-full min-h-60 focus:outline-none resize-none"
-                    placeholder="Descripción de la memoria"
+                    placeholder="Descripción del recuerdo"
                 />
             </FieldSet>
         </form>
