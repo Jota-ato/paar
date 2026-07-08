@@ -51,7 +51,7 @@ function ConnectForm({
     const connect = async () => {
         if (!code.trim()) return
         setLoading(true)
-        const { } = showResponse(await connectCoupleIdAction(user, code))
+        showResponse(await connectCoupleIdAction(user, code))
         setLoading(false)
     }
 
@@ -88,8 +88,8 @@ export function CoupleIdDialog() {
 
     const generateCoupleId = async () => {
         if (!user) return
-        const response = await generateCoupleIdAction(user)
-        const { data } = showResponse(response)
+        const data = showResponse(await generateCoupleIdAction(user))
+        if (!data) return
         setUser({
             ...user,
             coupleId: data
