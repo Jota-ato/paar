@@ -16,6 +16,7 @@ export default async function CreateMemoryPage() {
         <PageWPadding>
             <Container className="space-y-6">
                 <MemoryFormHeader
+                    key={Math.random()}
                     user={user}
                 />
                 <MemoryForm />

@@ -29,6 +29,7 @@ export default async function MemoryPage({
           user={user}
         />
         <MemoryForm
+          key={memory?.id ?? "new"}
           dbMemory={memory}
         />
       </Container>

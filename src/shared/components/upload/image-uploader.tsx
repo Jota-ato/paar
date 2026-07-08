@@ -14,7 +14,7 @@ export function ImageUploader({
     onChange: (url: string | null) => void
     image?: string
 }) {
-    const [imageUrl, setImageUrl] = useState<string | null>(image ?? '')
+    const imageUrl = image ?? null
     const [isUploading, setIsUploading] = useState(false)
     const [isCompressing, setIsCompressing] = useState(false)
 
@@ -44,7 +44,6 @@ export function ImageUploader({
 
             const fileUrl = res?.[0]?.ufsUrl
             if (fileUrl) {
-                setImageUrl(fileUrl)
                 onChange(fileUrl)
                 toast.success("Imagen optimizada y subida correctamente")
             }
@@ -74,7 +73,6 @@ export function ImageUploader({
                         <button
                             type="button"
                             onClick={() => {
-                                setImageUrl(null)
                                 onChange(null)
                             }}
                             className="flex items-center gap-1.5 text-xs font-medium bg-white text-black rounded-lg px-3 py-1.5 hover:bg-red-50 hover:text-red-600 transition-colors"
@@ -137,7 +135,6 @@ export function ImageUploader({
                     }}
                     onClientUploadComplete={(res) => {
                         setIsUploading(false)
-                        setImageUrl(res[0].ufsUrl)
                         onChange(res[0].ufsUrl)
                         toast.success("Imagen subida correctamente")
                     }}

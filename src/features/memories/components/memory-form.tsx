@@ -26,7 +26,7 @@ export function MemoryForm({
                 ...initialMemory
             })
         }
-    }, [dbMemory]);
+    }, [dbMemory?.id]);
 
     return (
         <form>
