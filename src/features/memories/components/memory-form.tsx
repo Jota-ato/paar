@@ -8,14 +8,8 @@ import { useMemoryStore } from "../stores/memories-store";
 export function MemoryForm() {
 
     const {
-        memoryTitle,
-        memoryDate,
-        memoryDescription,
-        memoryImageUrl,
-        setMemoryTitle,
-        setMemoryDate,
-        setMemoryDescription,
-        setMemoryImageUrl
+        memory,
+        setMemory
     } = useMemoryStore()
 
     return (
@@ -24,22 +18,22 @@ export function MemoryForm() {
                 <Input
                     className="w-full bg-transparent! rounded-none border-0 text-xl p-0 pb-1 focus:outline-none "
                     placeholder="Nuevo recuerdo"
-                    value={memoryTitle || ""}
-                    onChange={(e) => setMemoryTitle(e.target.value)}
+                    value={memory.title}
+                    onChange={(e) => setMemory({ ...memory, title: e.target.value })}
                 />
                 <DatePicker
-                    date={memoryDate || undefined}
-                    setDate={setMemoryDate}
+                    date={memory.date ?? undefined}
+                    setDate={(date) => setMemory({ ...memory, date: date ?? null })}
                 />
                 <ImageUploader
-                    image={memoryImageUrl || ""}
-                    onChange={setMemoryImageUrl}
+                    image={memory.image}
+                    onChange={(image) => setMemory({ ...memory, image: image ?? "" })}
                 />
                 <textarea
                     className="w-full min-h-60 focus:outline-none resize-none"
                     placeholder="Descripción del recuerdo"
-                    value={memoryDescription || ""}
-                    onChange={(e) => setMemoryDescription(e.target.value)}
+                    value={memory.description}
+                    onChange={(e) => setMemory({ ...memory, description: e.target.value })}
                 />
             </FieldSet>
         </form>

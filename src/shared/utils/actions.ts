@@ -3,16 +3,30 @@ import { AppError } from "./error";
 
 export type ActionResponse = Promise<NonPromiseActionResponse>
 
-export type NonPromiseActionResponse = {
-    success: boolean,
-    message: string,
-    data?: any
-}
+export type NonPromiseActionResponse<T = any> = {
+    success: boolean;
+    message: string;
+    data?: T;
+};
+
+type InferActionData<R> = R extends string ? string : R;
 
 type ActionResult =
     | { message: string; data?: unknown }
     | string
     | void
+
+function getSuccessMessage(result: unknown, fallback = "Operation successful."): string {
+    if (typeof result === "string") {
+        return result;
+    }
+
+    if (result && typeof result === "object" && "message" in result && typeof result.message === "string") {
+        return result.message;
+    }
+
+    return fallback;
+}
 
 export function authAction<T extends any[], R>(
     callback: (...args: T) => Promise<ActionResult>
@@ -29,12 +43,8 @@ export function authAction<T extends any[], R>(
 
             return {
                 success: true,
-                message: typeof result === 'object' && result !== null && 'message' in result
-                    ? result.message
-                    : "Operación exitosa.",
-                data: typeof result === 'object' && result !== null && 'data' in result
-                    ? result.data
-                    : result ?? undefined
+                message: getSuccessMessage(result),
+                data: result as InferActionData<R>
             };
 
         } catch (error) {

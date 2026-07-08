@@ -1,12 +1,20 @@
 import { db } from "@/db";
-import { Memory } from "@/db/schema";
+import { memories, Memory, NewMemory } from "@/db/schema";
 
 export interface IMemoriesRepository {
-    getAllMemories(coupleId: string): Promise<Memory[]>;
+    insert(memory: NewMemory): Promise<void>;
+    getAll(coupleId: string): Promise<Memory[]>;
 }
 
 class MemoriesRepository implements IMemoriesRepository {
-    async getAllMemories(coupleId: string) {
+    async insert(memory: NewMemory): Promise<void> {
+        await db
+            .insert(memories)
+            .values(memory)
+            .returning()
+    }
+
+    async getAll(coupleId: string): Promise<Memory[]> {
         return await db
             .query
             .memories
