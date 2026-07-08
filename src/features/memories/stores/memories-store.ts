@@ -5,6 +5,7 @@ export interface MemoryDraft {
     date: Date | null;
     description: string;
     image: string;
+    id?: string | null;
 }
 
 export interface MemoryStore {

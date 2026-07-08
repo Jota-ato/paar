@@ -5,6 +5,7 @@ import { AppError } from "@/shared/utils/error";
 import { IUserRepository, userRepository } from "@/features/user/services/user-repository";
 import { MemoryDraft } from "../stores/memories-store";
 import { couplesService } from "@/features/couples/services/couples-service";
+import { NewMemory } from "@/db/schema";
 
 class MemoriesService {
     constructor(
@@ -16,16 +17,19 @@ class MemoriesService {
     async createMemory(memory: MemoryDraft, userId: string) {
         const { user, coupleId } = await couplesService.validateUserCouple(userId)
 
-        await this.memoriesRepository.insert({
-            ...memory,
+        const payload: NewMemory = {
             coupleId,
             createdBy: user.id,
+            title: memory.title,
+            description: memory.description,
+            image: memory.image,
             date: memory.date ? memory.date : new Date()
-        })
+        }
+
+        await this.memoriesRepository.insert(payload)
     }
 
     async getCoupleMemories(userId: string) {
-
         const { coupleId } = await couplesService.validateUserCouple(userId)
 
         return await this.memoriesRepository.getAll(coupleId);
@@ -45,6 +49,14 @@ class MemoriesService {
         }
 
         return memory;
+    }
+
+    async deleteMemory(id: string, userId: string) {
+        const { user, coupleId } = await couplesService.validateUserCouple(userId)
+
+        const memory = await this.getMemoryById(id, user.id)
+
+        await this.memoriesRepository.delete(memory.id)
     }
 }
 
