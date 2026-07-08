@@ -12,7 +12,7 @@ export interface MemoryStore {
     setMemory: (memory: MemoryDraft) => void;
 }
 
-const initialMemory: MemoryDraft = {
+export const initialMemory: MemoryDraft = {
     title: "",
     date: null,
     description: "",

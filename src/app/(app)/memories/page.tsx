@@ -6,6 +6,7 @@ import { Button } from "@/shared/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/card";
 import { Container } from "@/shared/components/ui/container";
 import { PageWPadding } from "@/shared/components/ui/page-w-padding";
+import { PenSquare } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -37,7 +38,14 @@ export default async function MemoriesPage() {
       <Container className="space-y-8">
         {/* Cabecera de la página */}
         <div className="space-y-1">
-          <Heading level={1}>Nuestros Recuerdos</Heading>
+          <Heading className="flex justify-between items-center" level={1}>
+            Nuestros Recuerdos
+            <Link
+              href="/memories/create"
+            >
+              <PenSquare className="h-5 w-5 hover:stroke-primary transition-colors duration-250" />
+            </Link>
+          </Heading>
           <p className="text-muted-foreground text-sm">
             Un espacio dedicado a los momentos más importantes que han compartido.
           </p>
@@ -66,7 +74,7 @@ export default async function MemoriesPage() {
               >
                 <Link href="/memories/create">
                   Crear Recuerdo
-                </Link> 
+                </Link>
               </Button>
             </CardContent>
           </Card>

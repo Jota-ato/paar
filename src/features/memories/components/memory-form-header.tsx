@@ -1,7 +1,7 @@
 "use client"
 import { Save, Trash } from "lucide-react";
 import { BackLink } from "@/shared/components/ui/back-link";
-import { useMemoryStore } from "../stores/memories-store";
+import { initialMemory, useMemoryStore } from "../stores/memories-store";
 import { showResponse } from "@/shared/utils/client-actions";
 import { createMemoryAction } from "../actions/memories-actions";
 import { User } from "@/features/user/types/user.types";
@@ -14,12 +14,16 @@ export function MemoryFormHeader({
 }) {
 
     const {
-        memory
+        memory,
+        setMemory
     } = useMemoryStore()
 
     const handleSave = async () => {
         showResponse(await createMemoryAction(memory, user.id))
         redirect("/memories")
+        setMemory({
+            ...initialMemory
+        })
     }
 
     return (
