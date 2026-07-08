@@ -1,9 +1,10 @@
 import { couplesRepository, ICouplesRepository } from "@/features/couples/services/couples-repository";
 import { IMemoriesRepository, memoriesRepository } from "./memories-repository";
-import { User } from "@/features/user/types/user.types";
+import { User, UserWithCouple } from "@/features/user/types/user.types";
 import { AppError } from "@/shared/utils/error";
 import { IUserRepository, userRepository } from "@/features/user/services/user-repository";
 import { MemoryDraft } from "../stores/memories-store";
+import { couplesService } from "@/features/couples/services/couples-service";
 
 class MemoriesService {
     constructor(
@@ -13,40 +14,37 @@ class MemoriesService {
     ) { }
 
     async createMemory(memory: MemoryDraft, userId: string) {
-        const user = await this.userRepository.getById(userId)
-
-        if (!user) throw new AppError("Usuario no encontrado")
-        if (!user.coupleId) throw new AppError("Una pareja no está vinculada a este usuario")
-
-        const couple = await this.couplesRepository.getById(user.coupleId)
-        if (!couple) throw new AppError("Pareja no encontrada")
+        const { user, coupleId } = await couplesService.validateUserCouple(userId)
 
         await this.memoriesRepository.insert({
             ...memory,
-            coupleId: couple.id,
+            coupleId,
             createdBy: user.id,
             date: memory.date ? memory.date : new Date()
         })
     }
 
-    async getCoupleMemories(coupleId: string, user: User) {
+    async getCoupleMemories(userId: string) {
 
-        const couple = await this.couplesRepository.getById(coupleId);
-        const userFromDb = await this.userRepository.getById(user.id);
+        const { coupleId } = await couplesService.validateUserCouple(userId)
 
-        if (!userFromDb) {
-            throw new AppError("Usuario no encontrado")
+        return await this.memoriesRepository.getAll(coupleId);
+    }
+
+    async getMemoryById(id: string, userId: string) {
+
+        const { coupleId } = await couplesService.validateUserCouple(userId)
+        const memory = await this.memoriesRepository.getById(id);
+
+        if (!memory) {
+            throw new AppError("Recuerdo no encontrado")
         }
 
-        if (!couple) {
-            throw new AppError("No encontramos la pareja")
+        if (memory.coupleId !== coupleId) {
+            throw new AppError("No tienes permisos para ver este recuerdo")
         }
 
-        if (userFromDb.coupleId !== couple.id) {
-            throw new AppError("No tienes permisos para ver los recuerdos de esta pareja")
-        }
-
-        return await this.memoriesRepository.getAll(userFromDb.coupleId);
+        return memory;
     }
 }
 

@@ -31,7 +31,7 @@ export default async function MemoriesPage() {
     );
   }
 
-  const memories = await memoriesService.getCoupleMemories(user.coupleId, user);
+  const memories = await memoriesService.getCoupleMemories(user.id);
 
   return (
     <PageWPadding>

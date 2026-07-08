@@ -4,13 +4,20 @@ import { ImageUploader } from "@/shared/components/upload/image-uploader";
 import { Input } from "@/shared/components/ui/input";
 import { DatePicker } from "@/shared/components/forms/date-picker";
 import { useMemoryStore } from "../stores/memories-store";
+import { Memory } from "@/db/schema";
 
-export function MemoryForm() {
+export function MemoryForm({
+    dbMemory
+}: {
+    dbMemory?: Memory
+}) {
 
     const {
         memory,
         setMemory
     } = useMemoryStore()
+
+    if (dbMemory) setMemory({...dbMemory})
 
     return (
         <form>

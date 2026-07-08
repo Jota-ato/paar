@@ -20,10 +20,10 @@ export function MemoryFormHeader({
 
     const handleSave = async () => {
         showResponse(await createMemoryAction(memory, user.id))
-        redirect("/memories")
         setMemory({
             ...initialMemory
         })
+        redirect("/memories")
     }
 
     return (

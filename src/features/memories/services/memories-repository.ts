@@ -4,6 +4,7 @@ import { memories, Memory, NewMemory } from "@/db/schema";
 export interface IMemoriesRepository {
     insert(memory: NewMemory): Promise<void>;
     getAll(coupleId: string): Promise<Memory[]>;
+    getById(id: string): Promise<Memory | null>;
 }
 
 class MemoriesRepository implements IMemoriesRepository {
@@ -21,6 +22,15 @@ class MemoriesRepository implements IMemoriesRepository {
             .findMany({
                 where: (memories, { eq }) => eq(memories.coupleId, coupleId)
             })
+    }
+
+    async getById(id: string): Promise<Memory | null> {
+        return await db
+            .query
+            .memories
+            .findFirst({
+                where: (memories, { eq }) => eq(memories.id, id)
+            }) || null
     }
 }
 
