@@ -5,6 +5,7 @@ import { Input } from "@/shared/components/ui/input";
 import { DatePicker } from "@/shared/components/forms/date-picker";
 import { useMemoryStore } from "../stores/memories-store";
 import { Memory } from "@/db/schema";
+import { useEffect } from "react";
 
 export function MemoryForm({
     dbMemory
@@ -17,7 +18,11 @@ export function MemoryForm({
         setMemory
     } = useMemoryStore()
 
-    if (dbMemory) setMemory({...dbMemory})
+    useEffect(() => {
+        if (dbMemory) {
+            setMemory({ ...dbMemory });
+        }
+    }, [dbMemory]);
 
     return (
         <form>
