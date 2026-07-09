@@ -6,6 +6,7 @@ import { DatePicker } from "@/shared/components/forms/date-picker";
 import { initialMemory, useMemoryStore } from "../stores/memories-store";
 import { Memory } from "@/db/schema";
 import { useEffect } from "react";
+import { Textarea } from "@/shared/components/ui/textarea";
 
 export function MemoryForm({
     dbMemory
@@ -45,8 +46,8 @@ export function MemoryForm({
                     image={memory.image}
                     onChange={(image) => setMemory({ ...memory, image: image ?? "" })}
                 />
-                <textarea
-                    className="w-full min-h-60 focus:outline-none resize-none"
+                <Textarea
+                    className="w-full min-h-60 focus:ring-0! focus:outline-none! resize-none! bg-transparent! border-none!"
                     placeholder="Descripción del recuerdo"
                     value={memory.description}
                     onChange={(e) => setMemory({ ...memory, description: e.target.value })}
