@@ -5,8 +5,9 @@ import { redirect } from "next/navigation";
 import { Toaster } from "sonner";
 import { Inter } from "next/font/google";
 import { cn } from "@/shared/lib/utils";
+import { TooltipProvider } from "@/shared/components/ui/tooltip";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 export const metadata: Metadata = {
   title: "Paar",
@@ -25,22 +26,23 @@ export default async function RootLayout({
       className={cn("h-screen", "antialiased", "font-sans", inter.variable)}
     >
       <body className="h-full flex flex-col">
-        {children}
-        <Toaster 
-          theme="dark"
-          closeButton
-          richColors
-          position="top-right"
-          toastOptions={{
-            classNames: {
-              success: 'bg-success! text-success-foreground!',
-              warning: 'bg-warning! text-warning-foreground!',
-              error: 'bg-destructive! text-destructive-foreground!',
-              info: 'bg-info! text-info-foreground!',
-            }
-          }}
-        />
-
+        <TooltipProvider>
+          {children}
+          <Toaster
+            theme="dark"
+            closeButton
+            richColors
+            position="top-right"
+            toastOptions={{
+              classNames: {
+                success: 'bg-success! text-success-foreground!',
+                warning: 'bg-warning! text-warning-foreground!',
+                error: 'bg-destructive! text-destructive-foreground!',
+                info: 'bg-info! text-info-foreground!',
+              }
+            }}
+          />
+        </TooltipProvider>
       </body>
     </html>
   );

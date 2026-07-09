@@ -53,7 +53,7 @@ export default async function MemoriesPage() {
 
         {/* Listado de recuerdos o Estado Vacío */}
         {memories.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {memories.map((memory) => (
               <MemoryCard key={memory.id} memory={memory} />
             ))}

@@ -1,5 +1,7 @@
 import { requireAuth } from "@/lib/auth-server";
-import { Navigation } from "@/shared/components/controls/navigation";
+import { AppSideBar } from "@/shared/components/controls/app-side-bar";
+import { MobileNavigation } from "@/shared/components/controls/mobile-navigation";
+import { SidebarProvider, SidebarTrigger } from "@/shared/components/ui/sidebar";
 import { redirect } from "next/navigation";
 import { ReactNode } from "react";
 
@@ -18,10 +20,14 @@ export default async function AppLayout({
         <section
             className="h-full flex flex-col"
         >
-            <main className="flex-1">
-                {children}
-            </main>
-            <Navigation />
+            <SidebarProvider>
+                <AppSideBar />
+                <main className="flex-1">
+                    <SidebarTrigger />
+                    {children}
+                </main>
+            </SidebarProvider>
+            <MobileNavigation />
         </section>
     );
 }

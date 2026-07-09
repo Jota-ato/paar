@@ -7,32 +7,30 @@ import { cn } from "@/shared/utils/styles";
 import { ElementType } from "react";
 import { Route } from "next";
 import { Container } from "../ui/container";
+import { isActive } from "@/shared/utils/pathname";
 
-type NavItem = {
+export type NavItem = {
     href: Route;
     icon: ElementType;
     label: string;
     exact?: boolean;
 }
 
-const NAV_ITEMS: NavItem[] = [
+export const NAV_ITEMS: NavItem[] = [
     { href: "/",         icon: Home,   label: "Inicio",    exact: true },
     { href: "/notes",    icon: PenBox, label: "Notas" },
     { href: "/memories", icon: Image,  label: "Recuerdos" },
     { href: "/user",     icon: User,   label: "Perfil" },
 ]
 
-export function Navigation() {
+export function MobileNavigation() {
     const pathname = usePathname()
 
-    const isActive = (item: Omit<NavItem, 'icon'>) =>
-        item.exact ? pathname === item.href : pathname.startsWith(item.href)
-
     return (
-        <Container className="bg-transparent sticky bottom-0 py-4 flex items-center justify-center">
+        <Container className="bg-transparent sticky bottom-0 py-4 flex items-center justify-center md:hidden">
             <Card className="flex flex-row bg-surface/80 w-full items-center justify-evenly p-2">
                 {NAV_ITEMS.map(({ href, icon: Icon, label, ...item }) => {
-                    const active = isActive({ href, ...item, label })
+                    const active = isActive({ href, ...item, label }, pathname)
                     return (
                         <Link
                             key={href}
