@@ -39,7 +39,7 @@ export function MemoryForm({
                 />
                 <DatePicker
                     date={memory.date ?? undefined}
-                    setDate={(date) => setMemory({ ...memory, date: date ?? null })}
+                    setDate={(date) => setMemory({ ...memory })}
                 />
                 <ImageUploader
                     image={memory.image}
