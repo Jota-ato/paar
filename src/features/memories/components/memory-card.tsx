@@ -3,12 +3,13 @@ import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/shar
 import Image from "next/image";
 import Link from "next/link";
 import { format } from "date-fns";
-import { Memory } from "@/db/schema";
+import { MemoryWithUser } from "../types/memories.types";
+import { Badge } from "@/shared/components/ui/badge";
 
 export function MemoryCard({
-    memory: { image, date, id, title}
+    memory: { image, date, id, title, description, user }
 }: {
-    memory: Memory
+    memory: MemoryWithUser
 }) {
     return (
         <Card className="pt-0">
@@ -23,8 +24,14 @@ export function MemoryCard({
             </Link>
             <CardHeader>
                 <CardTitle>{title}</CardTitle>
-                <CardDescription>
-                    {format(date ? new Date(date) : new Date(), "dd/MM/yyyy")}
+                <CardDescription className="space-y-2">
+                    <p> {format(date, "dd/MM/yyyy")}</p>
+                    <p className="line-clamp-2">{description}</p>
+                    <Badge
+                        variant="outline"
+                    >
+                        {user.name}
+                    </Badge>
                 </CardDescription>
             </CardHeader>
             <CardFooter>

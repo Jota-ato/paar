@@ -5,7 +5,6 @@ import { Button } from "@/shared/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/card";
 import { Container } from "@/shared/components/ui/container";
 import { PageWPadding } from "@/shared/components/ui/page-w-padding";
-import { Separator } from "@/shared/components/ui/separator";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
