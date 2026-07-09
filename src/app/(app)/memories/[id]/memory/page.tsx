@@ -20,7 +20,10 @@ export default async function MemoryPage({
 
   if (!id) notFound()
 
-  const memory = await memoriesService.getMemoryById(id, user.id)
+  const memory = await memoriesService.getMemoryById(id)
+  if (!memory) notFound()
+
+  if (memory.coupleId !== user.coupleId) notFound()
 
   return (
     <PageWPadding>
