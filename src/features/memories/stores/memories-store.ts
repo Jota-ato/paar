@@ -1,21 +1,22 @@
+import { Memory } from "@/db/schema";
 import { create } from "zustand";
 
 export interface MemoryDraft {
     title: string;
-    date: Date | null;
+    date: Date;
     description: string;
     image: string;
     id?: string | null;
 }
 
 export interface MemoryStore {
-    memory: MemoryDraft;
+    memory: MemoryDraft | Memory;
     setMemory: (memory: MemoryDraft) => void;
 }
 
 export const initialMemory: MemoryDraft = {
     title: "",
-    date: null,
+    date: new Date(),
     description: "",
     image: "",
 };

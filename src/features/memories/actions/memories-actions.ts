@@ -10,6 +10,11 @@ export const createMemoryAction = authAction(async (data: MemoryDraft, userId: s
     return "Recuerdo creado exitosamente"
 })
 
+export const updateMemoryAction = authAction(async (memoryId: string, data: MemoryDraft, userId: string) => {
+    await memoriesService.editMemory(memoryId, data, userId)
+    return "Recuerdo actualizado exitosamente"
+})
+
 export const deleteMemoryAction = authAction(async (memoryId: string, userId: string) => {
     await memoriesService.deleteMemory(memoryId, userId)
 

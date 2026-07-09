@@ -3,7 +3,7 @@ import { Save, Trash } from "lucide-react";
 import { BackLink } from "@/shared/components/ui/back-link";
 import { initialMemory, useMemoryStore } from "../stores/memories-store";
 import { showResponse } from "@/shared/utils/client-actions";
-import { createMemoryAction, deleteMemoryAction } from "../actions/memories-actions";
+import { createMemoryAction, deleteMemoryAction, updateMemoryAction } from "../actions/memories-actions";
 import { User } from "@/features/user/types/user.types";
 import { redirect } from "next/navigation";
 
@@ -19,7 +19,11 @@ export function MemoryFormHeader({
     } = useMemoryStore()
 
     const handleSave = async () => {
-        showResponse(await createMemoryAction(memory, user.id))
+        if ("id" in memory && "createdBy" in memory) {
+            showResponse(await updateMemoryAction(memory.id, memory, user.id))
+        } else {
+            showResponse(await createMemoryAction(memory, user.id))
+        }
         setMemory({
             ...initialMemory
         })

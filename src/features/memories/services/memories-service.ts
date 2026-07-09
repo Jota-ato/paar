@@ -1,17 +1,14 @@
-import { couplesRepository, ICouplesRepository } from "@/features/couples/services/couples-repository";
 import { IMemoriesRepository, memoriesRepository } from "./memories-repository";
-import { User, UserWithCouple } from "@/features/user/types/user.types";
 import { AppError } from "@/shared/utils/error";
-import { IUserRepository, userRepository } from "@/features/user/services/user-repository";
 import { MemoryDraft } from "../stores/memories-store";
 import { couplesService } from "@/features/couples/services/couples-service";
-import { NewMemory } from "@/db/schema";
+import { Memory, NewMemory } from "@/db/schema";
+import { User } from "@/features/user/types/user.types";
+import { UpdateMemory } from "../types/memories.types";
 
 class MemoriesService {
     constructor(
         private memoriesRepository: IMemoriesRepository,
-        private couplesRepository: ICouplesRepository,
-        private userRepository: IUserRepository
     ) { }
 
     async createMemory(memory: MemoryDraft, userId: string) {
@@ -23,10 +20,25 @@ class MemoriesService {
             title: memory.title,
             description: memory.description,
             image: memory.image,
-            date: memory.date ? memory.date : new Date()
+            date: memory.date
         }
 
         await this.memoriesRepository.insert(payload)
+    }
+
+    async editMemory(memoryId: string, memory: MemoryDraft, userId: string) {
+        const { user, coupleId } = await couplesService.validateUserCouple(userId)
+
+        const existingMemory = await this.getMemoryById(memoryId)
+        this.validateUserMemoryAccess(existingMemory, user)
+
+        const payload: UpdateMemory = {
+            ...memory,
+            coupleId,
+            createdBy: user.id,
+        }
+
+        await this.memoriesRepository.update(memoryId, payload)
     }
 
     async getCoupleMemories(userId: string) {
@@ -35,26 +47,24 @@ class MemoriesService {
         return await this.memoriesRepository.getAll(coupleId);
     }
 
-    async getMemoryById(id: string, userId: string) {
-
-        const { coupleId } = await couplesService.validateUserCouple(userId)
+    async getMemoryById(id: string) {
         const memory = await this.memoriesRepository.getById(id);
-
-        if (!memory) {
-            throw new AppError("Recuerdo no encontrado")
-        }
-
-        if (memory.coupleId !== coupleId) {
-            throw new AppError("No tienes permisos para ver este recuerdo")
-        }
+        if (!memory) throw new AppError("Recuerdo no encontrado")
 
         return memory;
+    }
+
+    validateUserMemoryAccess(memory: Memory, user: User) {
+        if (memory.coupleId !== user.coupleId) {
+            throw new AppError("No tienes permisos para ver este recuerdo")
+        }
     }
 
     async deleteMemory(id: string, userId: string) {
         const { user, coupleId } = await couplesService.validateUserCouple(userId)
 
-        const memory = await this.getMemoryById(id, user.id)
+        const memory = await this.getMemoryById(id)
+        this.validateUserMemoryAccess(memory, user)
 
         await this.memoriesRepository.delete(memory.id)
     }
@@ -62,6 +72,4 @@ class MemoriesService {
 
 export const memoriesService = new MemoriesService(
     memoriesRepository,
-    couplesRepository,
-    userRepository
 );

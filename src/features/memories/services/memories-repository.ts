@@ -1,9 +1,11 @@
 import { db } from "@/db";
 import { memories, Memory, NewMemory } from "@/db/schema";
 import { eq } from "drizzle-orm";
+import { UpdateMemory } from "../types/memories.types";
 
 export interface IMemoriesRepository {
     insert(memory: NewMemory): Promise<void>;
+    update(memoryId: string, memory: UpdateMemory): Promise<void>;
     delete(memoryId: string): Promise<void>;
     getAll(coupleId: string): Promise<Memory[]>;
     getById(id: string): Promise<Memory | null>;
@@ -15,6 +17,13 @@ class MemoriesRepository implements IMemoriesRepository {
             .insert(memories)
             .values(memory)
             .returning()
+    }
+
+    async update(memoryId: string, memory: UpdateMemory): Promise<void> {
+        await db
+            .update(memories)
+            .set(memory)
+            .where(eq(memories.id, memoryId))
     }
 
     async delete(memoryId: string): Promise<void> {
