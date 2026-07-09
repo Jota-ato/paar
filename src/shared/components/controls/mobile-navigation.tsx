@@ -17,10 +17,10 @@ export type NavItem = {
 }
 
 export const NAV_ITEMS: NavItem[] = [
-    { href: "/",         icon: Home,   label: "Inicio",    exact: true },
-    { href: "/notes",    icon: PenBox, label: "Notas" },
-    { href: "/memories", icon: Image,  label: "Recuerdos" },
-    { href: "/user",     icon: User,   label: "Perfil" },
+    { href: "/app",         icon: Home,   label: "Inicio",    exact: true },
+    { href: "/app/notes",    icon: PenBox, label: "Notas" },
+    { href: "/app/memories", icon: Image,  label: "Recuerdos" },
+    { href: "/app/user",     icon: User,   label: "Perfil" },
 ]
 
 export function MobileNavigation() {

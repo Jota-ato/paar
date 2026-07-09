@@ -19,7 +19,7 @@ export default async function EditProfilePage() {
     return (
         <PageWPadding>
             <Container>
-                <Heading className="flex items-center"><BackLink href="/user/settings" /> Editar perfil</Heading>
+                <Heading className="flex items-center"><BackLink href="/app/user/settings/edit" /> Editar perfil</Heading>
                 <section className="w-full h-40 flex flex-col items-center justify-center gap-4">
                     <Image
                         src={user.image!}

@@ -20,22 +20,22 @@ const SETTINGS_SECTIONS: {
   {
     title: "Cuenta",
     items: [
-      { label: "Ver perfil", href: "/user" },
-      { label: "Configuración", href: "/user/settings" },
+      { label: "Ver perfil", href: "/app/user" },
+      { label: "Configuración", href: "/app/user/settings" },
     ],
   },
   {
     title: "Pareja",
     items: [
-      { label: "Ver perfil de tu pareja", href: "/user" },
-      { label: "Información de pareja", href: "/user" },
+      { label: "Ver perfil de tu pareja", href: "/app/user" },
+      { label: "Información de pareja", href: "/app/user" },
     ],
   },
   {
     title: "App",
     items: [
-      { label: "Acerca de", href: "/about-app" },
-      { label: "Créditos", href: "/credits" },
+      { label: "Acerca de", href: "/app/about-app" },
+      { label: "Créditos", href: "/app/credits" },
     ],
   },
 ] as const

@@ -24,7 +24,7 @@ export default async function SettingsPage() {
             <Container className="space-y-8">
                 <div className="space-y-1">
                     <Heading className="font-extrabold tracking-tight flex items-center">
-                        <BackLink href="/user" />
+                        <BackLink href="/app/user" />
                         Configuración de cuenta
                     </Heading>
                     <p className="text-sm text-muted-foreground">
@@ -50,7 +50,7 @@ export default async function SettingsPage() {
                                 size="sm"
                             >
                                 <Link
-                                    href="/user/settings/edit"
+                                    href="/app/user/settings/edit"
                                 >
                                     Editar datos de perfil
                                 </Link>
