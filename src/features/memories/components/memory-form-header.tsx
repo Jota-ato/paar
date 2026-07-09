@@ -44,11 +44,13 @@ export function MemoryFormHeader({
             <BackLink href="/memories" />
             <div className="flex items-center gap-4">
                 <Save
+                    aria-label="Guardar memoria"
                     className="stroke-muted-foreground w-5 h-5 hover:stroke-accent cursor-pointer transition-all duration-200"
                     strokeWidth={1.5}
                     onClick={handleSave}
                 />
                 <Trash
+                    aria-label="Eliminar memoria"
                     className="stroke-muted-foreground w-5 h-5 hover:stroke-destructive cursor-pointer transition-all duration-200"
                     strokeWidth={1.5}
                     onClick={handleDelete}
