@@ -1,6 +1,5 @@
 import { relations } from "drizzle-orm";
 import { pgTable, timestamp, text } from "drizzle-orm/pg-core";
-import { notes } from "./notes-schema";
 import { user } from "./auth-schema";
 import { memories } from "./memories";
 
@@ -13,8 +12,6 @@ export const couples = pgTable('couples', {
 })
 
 export const couplesRelations = relations(couples, ({ many }) => ({
-    notes: many(notes),
-    user: many(user),
     memories: many(memories)
 }))
 
