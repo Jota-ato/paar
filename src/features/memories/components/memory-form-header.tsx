@@ -27,7 +27,7 @@ export function MemoryFormHeader({
         setMemory({
             ...initialMemory
         })
-        redirect("/memories")
+        redirect("/app/memories")
     }
 
     const handleDelete = async () => {
@@ -36,12 +36,12 @@ export function MemoryFormHeader({
         setMemory({
             ...initialMemory
         })
-        redirect("/memories")
+        redirect("/app/memories")
     }
 
     return (
         <nav className="flex items-center justify-between gap-2">
-            <BackLink href="/memories" />
+            <BackLink href="/app/memories" />
             <div className="flex items-center gap-4">
                 <Save
                     aria-label="Guardar memoria"
