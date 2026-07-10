@@ -37,7 +37,7 @@ export default function CreditsPage() {
     return (
         <PageWPadding>
             <Container className="py-8 sm:py-12">
-                <BackLink href="/user" className="-mt-4 mb-4" />
+                <BackLink href="/app/user" className="-mt-4 mb-4" />
                 <div className="space-y-6">
                     <header className="rounded-2xl border border-border/70 bg-linear-to-br from-primary/10 via-background to-muted/70 p-6 shadow-sm sm:p-8">
                         <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-background/70 px-3 py-1 text-sm text-muted-foreground">

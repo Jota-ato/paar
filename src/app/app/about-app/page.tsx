@@ -45,7 +45,7 @@ export default function AboutApp() {
         <PageWPadding>
             <Container>
                 <Heading className="flex items-center gap-2">
-                    <BackLink href="/user" />
+                    <BackLink href="/app/user" />
                     Acerca de la app
                 </Heading>
 

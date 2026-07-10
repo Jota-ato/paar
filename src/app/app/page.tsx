@@ -32,7 +32,7 @@ export default async function Home() {
               size="sm"
             >
               <Link
-                href="/daily-feelings"
+                href="/app/daily-feelings"
               >
                 Ir al cuestionario
               </Link>

@@ -41,7 +41,7 @@ export default async function MemoriesPage() {
           <Heading className="flex justify-between items-center" level={1}>
             Nuestros Recuerdos
             <Link
-              href="/memories/create"
+              href="/app/memories/create"
             >
               <PenSquare className="h-5 w-5 hover:stroke-primary transition-colors duration-250" />
             </Link>
@@ -72,7 +72,7 @@ export default async function MemoriesPage() {
               <Button
                 variant={"outline"}
               >
-                <Link href="/memories/create">
+                <Link href="/app/memories/create">
                   Crear Recuerdo
                 </Link>
               </Button>
