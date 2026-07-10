@@ -13,7 +13,7 @@ export function MemoryCard({
 }) {
     return (
         <Card className="pt-0">
-            <Link href={`/memories/${id}/memory`}>
+            <Link href={`/app/memories/${id}/memory`}>
                 <Image
                     src={image!}
                     width={1280}
@@ -40,7 +40,7 @@ export function MemoryCard({
                     variant="link"
                 >
                     <Link
-                        href={`/memories/${id}/memory`}
+                        href={`/app/memories/${id}/memory`}
                     >
                         Revivir el momento
                     </Link>
